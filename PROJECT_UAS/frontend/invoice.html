@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice - Kopikoe</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f3f4f6;
+        }
+    </style>
+</head>
+
+<body class="flex items-center justify-center min-h-screen py-10">
+
+    <div class="bg-white w-full max-w-4xl p-10 shadow-2xl rounded-sm relative" id="invoice-content">
+
+        <div class="flex justify-between items-start mb-10">
+            <div>
+                <h1 class="text-5xl font-bold tracking-tight text-black mb-2">BILL</h1>
+                <p class="text-sm text-gray-500">Date: <span id="inv-date">...</span></p>
+                <p class="text-sm text-gray-500 font-bold">Invoice: <span id="inv-id">#...</span></p>
+                <p class="text-sm text-gray-500 mt-1">Customer: <span id="inv-customer">...</span></p>
+            </div>
+            <div class="text-right">
+                <img src="/assets/logo kopikoe.png" alt="Kopikoe"
+                    class="h-20 w-auto ml-auto mb-2 opacity-80 grayscale hover:grayscale-0 transition">
+                <p class="text-xs text-gray-400">Kopikoe Coffee Shop</p>
+            </div>
+        </div>
+
+        <div class="mb-10">
+            <table class="w-full text-left">
+                <thead>
+                    <tr class="border-b-2 border-gray-300">
+                        <th class="py-3 text-sm font-bold text-black w-12">No.</th>
+                        <th class="py-3 text-sm font-bold text-black">Description</th>
+                        <th class="py-3 text-sm font-bold text-black w-32">Rate</th>
+                        <th class="py-3 text-sm font-bold text-black w-24 text-center">Quantity</th>
+                        <th class="py-3 text-sm font-bold text-black w-32 text-right">Subtotal</th>
+                    </tr>
+                </thead>
+                <tbody id="invoice-items">
+                </tbody>
+            </table>
+        </div>
+
+        <div class="bg-[#F5EFE6] p-6 rounded-sm mb-10">
+            <h3 class="font-bold text-sm mb-2 border-b border-black pb-1">Additional Information</h3>
+
+            <div class="flex justify-end">
+                <div class="w-64">
+                    <div class="flex justify-between mb-2">
+                        <span class="text-sm font-medium">Subtotal:</span>
+                        <span class="text-sm font-mono" id="inv-subtotal">Rp 0</span>
+                    </div>
+                    <div class="flex justify-between mb-2">
+                        <span class="text-sm font-medium">Tax (11%):</span>
+                        <span class="text-sm font-mono" id="inv-tax">Rp 0</span>
+                    </div>
+                    <div class="flex justify-between border-t border-black pt-2 mt-2">
+                        <span class="text-lg font-bold">Total:</span>
+                        <span class="text-lg font-bold font-mono" id="inv-total">Rp 0</span>
+                    </div>
+
+                    <div class="mt-4 text-right">
+                        <span
+                            class="inline-block px-3 py-1 bg-yellow-100 text-yellow-800 text-xs font-bold rounded-full border border-yellow-300">
+                            Status: Pending Confirmation
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex items-center gap-2 text-xs text-gray-500 border-t pt-4">
+            <div class="w-3 h-3 bg-black rounded-full"></div>
+            <p>Thank you! — kopikoe@mail.com</p>
+            <button onclick="window.print()"
+                class="ml-auto bg-gray-800 text-white px-4 py-1 rounded hover:bg-black transition">Print Bill</button>
+            <a href="/" class="text-blue-600 hover:underline">Back to Home</a>
+        </div>
+    </div>
+
+    <script>
+        // Format Rupiah
+        const formatRupiah = (num) => new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(num);
+
+        // Ambil ID dari URL (contoh: /invoice?id=ORD-123)
+        const urlParams = new URLSearchParams(window.location.search);
+        const orderId = urlParams.get('id');
+
+        if (orderId) {
+            fetch(`/api/invoice/${orderId}`)
+                .then(res => res.json())
+                .then(data => {
+                    document.getElementById('inv-date').innerText = data.date;
+                    document.getElementById('inv-id').innerText = data.id;
+                    document.getElementById('inv-customer').innerText = data.customer;
+
+                    const tbody = document.getElementById('invoice-items');
+                    let html = '';
+                    data.items.forEach((item, index) => {
+                        html += `
+                            <tr class="border-b border-gray-100">
+                                <td class="py-4 text-sm font-bold text-black">${index + 1}.</td>
+                                <td class="py-4 text-sm font-bold text-black">${item.name}</td>
+                                <td class="py-4 text-sm font-bold text-black">${formatRupiah(item.price)}</td>
+                                <td class="py-4 text-sm font-bold text-black text-center">${item.qty}</td>
+                                <td class="py-4 text-sm font-bold text-black text-right">${formatRupiah(item.price * item.qty)}</td>
+                            </tr>
+                        `;
+                    });
+                    tbody.innerHTML = html;
+
+                    document.getElementById('inv-subtotal').innerText = formatRupiah(data.subtotal);
+                    document.getElementById('inv-tax').innerText = formatRupiah(data.tax);
+                    document.getElementById('inv-total').innerText = formatRupiah(data.total);
+                })
+                .catch(err => alert("Gagal memuat invoice."));
+        } else {
+            alert("Order ID tidak ditemukan.");
+        }
+    </script>
+</body>
+
+</html>

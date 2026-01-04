@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KoPiKoe - Home</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Clicker+Script&family=Playfair+Display:wght@400;700&family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              "kopikoe-gold": "#F4C466",
+              "kopikoe-dark": "#2C1810",
+              "kopikoe-brown": "#614331",
+              "kopikoe-cream": "#FFF9F0",
+            },
+            fontFamily: {
+              sans: ["Poppins", "sans-serif"],
+              serif: ["Playfair Display", "serif"],
+              clicker: ["Clicker Script", "cursive"],
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .animate-fade-in-up {
+        animation: fadeInUp 0.8s ease-out forwards;
+      }
+    </style>
+  </head>
+
+  <body class="font-sans antialiased text-gray-800">
+    
+    <div class="relative w-full h-screen overflow-hidden bg-gray-900" id="home">
+      <div class="absolute inset-0 z-0">
+        <img
+          src="/assets/background.jpg"
+          alt="Coffee Shop Background"
+          class="w-full h-full object-cover opacity-90"
+        />
+        <div class="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent"></div>
+      </div>
+
+      <nav id="main-nav" class="fixed top-0 left-0 w-full z-50 px-6 md:px-12 lg:px-32 py-6 flex justify-between items-center text-white transition-all duration-300">
+        <a href="/" class="block group cursor-pointer">
+          <img
+            src="/assets/logo kopikoe.png"
+            alt="logo profile"
+            class="h-16 md:h-24 w-auto rounded-full object-cover"
+          />
+        </a>
+
+        <div class="hidden md:flex space-x-10 font-bold text-sm tracking-wide">
+          <a href="#home" class="hover:text-kopikoe-gold transition duration-300">Home</a>
+          <a href="#about" class="hover:text-kopikoe-gold transition duration-300">About Us</a>
+          <a href="#menu" class="hover:text-kopikoe-gold transition duration-300">Menu</a>
+          <a href="#contact" class="hover:text-kopikoe-gold transition duration-300">Contact Us</a>
+        </div>
+
+        <div class="relative">
+          <div id="guest-menu" class="hidden">
+            <a
+              href="/login"
+              class="bg-kopikoe-gold hover:bg-yellow-500 hover:shadow-yellow-500/50 text-gray-900 font-serif font-bold text-base px-6 py-2 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 flex items-center gap-2"
+            >
+              Login
+            </a>
+          </div>
+
+          <div id="user-menu" class="hidden relative">
+            <button onclick="toggleProfileMenu()" class="flex items-center gap-3 focus:outline-none group">
+              <div class="w-10 h-10 rounded-full overflow-hidden border-2 border-white/60 group-hover:border-kopikoe-gold transition shadow-md">
+                <img
+                  src="https://ui-avatars.com/api/?name=User&background=FDBA74&color=2C1810"
+                  id="user-avatar"
+                  alt="Profile"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <span id="nav-username" class="font-medium text-lg hidden sm:block group-hover:text-kopikoe-gold transition">
+                User
+              </span>
+              <i class="fa-solid fa-chevron-down text-sm group-hover:text-kopikoe-gold transition"></i>
+            </button>
+
+            <div
+              id="profileDropdown"
+              class="hidden absolute right-0 mt-4 w-56 bg-white rounded-xl shadow-2xl py-2 text-gray-800 transform origin-top-right transition-all duration-200 z-50"
+            >
+              <div class="absolute -top-2 right-5 w-4 h-4 bg-white transform rotate-45 border-l border-t border-gray-100"></div>
+              <div class="relative z-10">
+                <div class="px-4 py-3 border-b border-gray-100">
+                  <p class="text-xs text-gray-500 uppercase font-bold">Signed in as</p>
+                  <p id="userEmailDisplay" class="text-sm font-bold text-gray-800 truncate">...</p>
+                </div>
+                <a href="/customer/dashboard" class="flex items-center gap-3 px-4 py-3 text-sm hover:bg-orange-50 hover:text-orange-600 transition">
+                  <i class="fa-solid fa-user"></i> Dashboard
+                </a>
+                <a href="/customer/settings" class="flex items-center gap-3 px-4 py-3 text-sm hover:bg-orange-50 hover:text-orange-600 transition">
+                  <i class="fa-solid fa-gear"></i> Settings
+                </a>
+                <a href="/auth/logout" class="flex items-center gap-3 px-4 py-3 text-sm text-red-500 hover:bg-red-50 hover:text-red-700 transition mt-1 border-t border-gray-100">
+                  <i class="fa-solid fa-right-from-bracket"></i> Logout
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <div class="relative z-10 h-full flex flex-col justify-center px-8 md:pl-40 lg:pl-60 pt-10">
+        <div class="max-w-4xl">
+          <h1 class="font-clicker text-white text-[100px] md:text-[200px] leading-none mb-16 drop-shadow-xl animate-fade-in-up">
+            Kopikoe
+          </h1>
+          <p class="font-serif text-white/90 text-xl md:text-3xl font-normal leading-relaxed mb-10 drop-shadow-md">
+            Gak usah ragu, rasa kopi kita gak ada obat.<br />
+            Langsung bikin mood Lo ke-boost!
+          </p>
+          <div>
+            <a href="#menu" class="bg-kopikoe-gold hover:bg-yellow-500 hover:shadow-yellow-500/50 text-gray-900 font-serif font-bold text-lg px-10 py-4 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 flex items-center gap-2 w-fit">
+              Order Now
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section id="about" class="py-24 bg-white relative overflow-hidden">
+      <div class="max-w-7xl mx-auto px-6 md:px-12 flex flex-col md:flex-row items-center gap-10">
+        <div class="w-full md:w-[60%] text-left order-2 md:order-1">
+          <h2 class="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-[#4E342E] mb-16 leading-tight md:whitespace-nowrap">
+            Bukan Hanya Kopi, Ini KopiKoe.
+          </h2>
+          <p class="font-serif text-gray-600 text-base md:text-lg leading-relaxed mb-8 text-justify">
+            Kopikoe adalah rumah bagi para penikmat kopi yang mencari kualitas dan kepuasan sejati. Kami berkomitmen menyediakan kopi terbaik yang secara ilmiah terbukti mampu meningkatkan fokus dan membangun mood positif Anda. Jangan hanya minum kopi; nikmati esensi Kopikoe, pengalaman yang pasti akan melampaui standar rasa yang pernah Anda ketahui.
+          </p>
+          <button class="bg-kopikoe-gold hover:bg-yellow-500 hover:shadow-yellow-500/50 text-gray-900 font-serif font-bold text-base px-10 py-3 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 flex items-center gap-2">
+            Learn More
+          </button>
+        </div>
+
+        <div class="w-full md:w-[40%] flex justify-end order-1 md:order-2 relative">
+          <img
+            src="/assets/fotoabout.png"
+            alt="Coffee Beans Art"
+            class="w-full object-contain drop-shadow-2xl transform scale-125 md:scale-150 origin-center transition duration-700 hover:scale-[1.6]"
+          />
+        </div>
+      </div>
+    </section>
+
+    <section id="menu" class="py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-6 md:px-12">
+        <div class="text-center mb-16">
+          <h2 class="font-serif text-3xl md:text-5xl font-bold text-kopikoe-brown mb-4">
+            Nikmati Sensasi Baru dalam Setiap Cangkir Kopi
+          </h2>
+          <p class="font-sans text-gray-500 text-sm md:text-base max-w-2xl mx-auto leading-relaxed">
+            Jelajahi berbagai cita rasa kopi terbaik dari kami.<br />
+            Selalu ada secangkir baru yang layak untuk kamu coba dan nikmati.
+          </p>
+        </div>
+
+        <div id="menu-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div class="bg-kopikoe-cream p-8 rounded-lg border border-kopikoe-gold hover:shadow-xl transition duration-300 flex flex-col items-center group">
+            <div class="h-48 w-full flex items-center justify-center mb-6 overflow-hidden">
+              <img src="/assets/ftkp1.png" alt="Cappuccino" class="h-full object-contain group-hover:scale-110 transition duration-500 drop-shadow-lg" />
+            </div>
+            <h3 class="font-serif text-2xl font-bold text-kopikoe-brown mb-1">Cappuccino</h3>
+            <p class="font-serif text-xs text-gray-500 mb-4 tracking-wide">Coffee 50% | Milk 50%</p>
+            <p class="font-serif text-lg font-bold text-kopikoe-brown mb-6">Rp. 25.000</p>
+            <button onclick="addToCart('Cappuccino', 25000)" class="bg-kopikoe-gold hover:bg-yellow-400 hover:shadow-yellow-400/50 text-kopikoe-dark font-serif font-bold px-8 py-2 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 flex items-center gap-2">
+              Order Now
+            </button>
+          </div>
+          
+          <div class="bg-kopikoe-cream p-8 rounded-lg border border-kopikoe-gold hover:shadow-xl transition duration-300 flex flex-col items-center group">
+            <div class="h-48 w-full flex items-center justify-center mb-6 overflow-hidden">
+              <img src="/assets/ftkp2.png" alt="Arabicano" class="h-full object-contain group-hover:scale-110 transition duration-500 drop-shadow-lg" />
+            </div>
+            <h3 class="font-serif text-2xl font-bold text-kopikoe-brown mb-1">Arabicano</h3>
+            <p class="font-serif text-xs text-gray-500 mb-4 tracking-wide">Coffee 100%</p>
+            <p class="font-serif text-lg font-bold text-kopikoe-brown mb-6">Rp. 20.000</p>
+            <button onclick="addToCart('Arabicano', 20000)" class="bg-kopikoe-gold hover:bg-yellow-400 hover:shadow-yellow-400/50 text-kopikoe-dark font-serif font-bold px-8 py-2 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 flex items-center gap-2">
+              Order Now
+            </button>
+          </div>
+
+          <div class="bg-kopikoe-cream p-8 rounded-lg border border-kopikoe-gold hover:shadow-xl transition duration-300 flex flex-col items-center group">
+            <div class="h-48 w-full flex items-center justify-center mb-6 overflow-hidden">
+              <img src="/assets/ftkp3.png" alt="Macchiato" class="h-full object-contain group-hover:scale-110 transition duration-500 drop-shadow-lg" />
+            </div>
+            <h3 class="font-serif text-2xl font-bold text-kopikoe-brown mb-1">Macchiato</h3>
+            <p class="font-serif text-xs text-gray-500 mb-4 tracking-wide">Coffee 50% | Milk 50%</p>
+            <p class="font-serif text-lg font-bold text-kopikoe-brown mb-6">Rp. 35.000</p>
+            <button onclick="addToCart('Macchiato', 35000)" class="bg-kopikoe-gold hover:bg-yellow-400 hover:shadow-yellow-400/50 text-kopikoe-dark font-serif font-bold px-8 py-2 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 flex items-center gap-2">
+              Order Now
+            </button>
+          </div>
+
+          <div class="bg-kopikoe-cream p-8 rounded-lg border border-kopikoe-gold hover:shadow-xl transition duration-300 flex flex-col items-center group">
+            <div class="h-48 w-full flex items-center justify-center mb-6 overflow-hidden">
+              <img src="/assets/ftkp4.png" alt="Expresso" class="h-full object-contain group-hover:scale-110 transition duration-500 drop-shadow-lg" />
+            </div>
+            <h3 class="font-serif text-2xl font-bold text-kopikoe-brown mb-1">Expresso</h3>
+            <p class="font-serif text-xs text-gray-500 mb-4 tracking-wide">Coffee 50% | Milk 50%</p>
+            <p class="font-serif text-lg font-bold text-kopikoe-brown mb-6">Rp. 35.000</p>
+            <button onclick="addToCart('Expresso', 35000)" class="bg-kopikoe-gold hover:bg-yellow-500 hover:shadow-yellow-500/50 text-kopikoe-dark font-serif font-bold px-8 py-2 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 flex items-center gap-2">
+              Order Now
+            </button>
+          </div>
+
+          <div class="bg-kopikoe-cream p-8 rounded-lg border border-kopikoe-gold hover:shadow-xl transition duration-300 flex flex-col items-center group">
+            <div class="h-48 w-full flex items-center justify-center mb-6 overflow-hidden">
+              <img src="/assets/ftkp5.png" alt="Latte" class="h-full object-contain group-hover:scale-110 transition duration-500 drop-shadow-lg" />
+            </div>
+            <h3 class="font-serif text-2xl font-bold text-kopikoe-brown mb-1">Caffè Latte</h3>
+            <p class="font-serif text-xs text-gray-500 mb-4 tracking-wide">Coffee 30% | Steamed Milk 70%</p>
+            <p class="font-serif text-lg font-bold text-kopikoe-brown mb-6">Rp. 28.000</p>
+            <button onclick="addToCart('Caffè Latte', 28000)" class="bg-kopikoe-gold hover:bg-yellow-400 hover:shadow-yellow-400/50 text-kopikoe-dark font-serif font-bold px-8 py-2 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 flex items-center gap-2">
+              Order Now
+            </button>
+          </div>
+
+          <div class="bg-kopikoe-cream p-8 rounded-lg border border-kopikoe-gold hover:shadow-xl transition duration-300 flex flex-col items-center group">
+            <div class="h-48 w-full flex items-center justify-center mb-6 overflow-hidden">
+              <img src="/assets/ftkp6.png" alt="Americano" class="h-full object-contain group-hover:scale-110 transition duration-500 drop-shadow-lg" />
+            </div>
+            <h3 class="font-serif text-2xl font-bold text-kopikoe-brown mb-1">Americano</h3>
+            <p class="font-serif text-xs text-gray-500 mb-4 tracking-wide">Espresso | Hot Water</p>
+            <p class="font-serif text-lg font-bold text-kopikoe-brown mb-6">Rp. 22.000</p>
+            <button onclick="addToCart('Americano', 22000)" class="bg-kopikoe-gold hover:bg-yellow-400 hover:shadow-yellow-400/50 text-kopikoe-dark font-serif font-bold px-8 py-2 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 flex items-center gap-2">
+              Order Now
+            </button>
+          </div>
+
+          <div class="bg-kopikoe-cream p-8 rounded-lg border border-kopikoe-gold hover:shadow-xl transition duration-300 flex flex-col items-center group">
+            <div class="h-48 w-full flex items-center justify-center mb-6 overflow-hidden">
+              <img src="/assets/ftkp7.png" alt="Mocha" class="h-full object-contain group-hover:scale-110 transition duration-500 drop-shadow-lg" />
+            </div>
+            <h3 class="font-serif text-2xl font-bold text-kopikoe-brown mb-1">Choco Mocha</h3>
+            <p class="font-serif text-xs text-gray-500 mb-4 tracking-wide">Coffee | Chocolate | Milk</p>
+            <p class="font-serif text-lg font-bold text-kopikoe-brown mb-6">Rp. 30.000</p>
+            <button onclick="addToCart('Choco Mocha', 30000)" class="bg-kopikoe-gold hover:bg-yellow-400 hover:shadow-yellow-400/50 text-kopikoe-dark font-serif font-bold px-8 py-2 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 flex items-center gap-2">
+              Order Now
+            </button>
+          </div>
+
+          <div class="bg-kopikoe-cream p-8 rounded-lg border border-kopikoe-gold hover:shadow-xl transition duration-300 flex flex-col items-center group">
+            <div class="h-48 w-full flex items-center justify-center mb-6 overflow-hidden">
+              <img src="/assets/ftkp8.png" alt="Kopi Gula Aren" class="h-full object-contain group-hover:scale-110 transition duration-500 drop-shadow-lg" />
+            </div>
+            <h3 class="font-serif text-2xl font-bold text-kopikoe-brown mb-1">Kopi Gula Aren</h3>
+            <p class="font-serif text-xs text-gray-500 mb-4 tracking-wide">Palm Sugar | Fresh Milk</p>
+            <p class="font-serif text-lg font-bold text-kopikoe-brown mb-6">Rp. 25.000</p>
+            <button onclick="addToCart('Kopi Gula Aren', 25000)" class="bg-kopikoe-gold hover:bg-yellow-400 hover:shadow-yellow-400/50 text-kopikoe-dark font-serif font-bold px-8 py-2 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 flex items-center gap-2">
+              Order Now
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-24 bg-white">
+      <div class="max-w-7xl mx-auto px-6 md:px-12">
+        <div class="text-center mb-16">
+          <h2 class="font-serif text-4xl md:text-5xl font-bold text-kopikoe-brown mb-4">
+            Why are we different?
+          </h2>
+          <p class="font-sans text-gray-500 text-lg tracking-wide font-light">
+            We don’t just make your coffee, we make your day!
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
+          <div class="bg-kopikoe-cream border border-kopikoe-gold aspect-square rounded-lg flex flex-col items-center justify-center p-6 transition hover:shadow-lg hover:-translate-y-1 duration-300">
+            <img src="/assets/ftp1.png" alt="Biji Kopi Pilihan" class="w-20 h-20 object-contain mb-6 drop-shadow-sm" />
+            <h3 class="font-serif text-xl font-bold text-kopikoe-brown text-center">Biji Kopi Pilihan</h3>
+          </div>
+          <div class="bg-kopikoe-cream border border-kopikoe-gold aspect-square rounded-lg flex flex-col items-center justify-center p-6 transition hover:shadow-lg hover:-translate-y-1 duration-300">
+            <img src="/assets/ftp2.png" alt="Kualitas Premium" class="w-20 h-20 object-contain mb-6 drop-shadow-sm" />
+            <h3 class="font-serif text-xl font-bold text-kopikoe-brown text-center">Kualitas Premium</h3>
+          </div>
+          <div class="bg-kopikoe-cream border border-kopikoe-gold aspect-square rounded-lg flex flex-col items-center justify-center p-6 transition hover:shadow-lg hover:-translate-y-1 duration-300">
+            <img src="/assets/ftp3.png" alt="Rasa Tak Terlupakan" class="w-20 h-20 object-contain mb-6 drop-shadow-sm" />
+            <h3 class="font-serif text-xl font-bold text-kopikoe-brown text-center leading-tight">Rasa yang Tak<br />Terlupakan</h3>
+          </div>
+          <div class="bg-kopikoe-cream border border-kopikoe-gold aspect-square rounded-lg flex flex-col items-center justify-center p-6 transition hover:shadow-lg hover:-translate-y-1 duration-300">
+            <img src="/assets/ftp4.png" alt="Harga Bersahabat" class="w-20 h-20 object-contain mb-6 drop-shadow-sm" />
+            <h3 class="font-serif text-xl font-bold text-kopikoe-brown text-center">Harga Bersahabat</h3>
+          </div>
+        </div>
+
+        <div class="text-center">
+          <p class="font-serif text-gray-500 text-lg mb-2 italic">
+            Setiap ide besar dimulai dari secangkir kopi yang tepat.
+          </p>
+          <h3 class="font-serif text-2xl md:text-3xl font-bold text-kopikoe-brown mb-8">
+            Mulai Perjalananmu bersama KopiKoe hari ini!
+          </h3>
+          <button class="bg-kopikoe-gold hover:bg-yellow-500 hover:shadow-yellow-500/50 text-gray-900 font-serif font-bold text-base px-10 py-3 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105 hover:-translate-y-1">
+            Join Us
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="relative w-full py-24 bg-cover bg-center overflow-hidden" style="background-image: url('/assets/background.jpg')">
+      <div class="absolute inset-0 bg-[#3E2713]/90"></div>
+      <div class="relative z-10 max-w-7xl mx-auto px-6 md:px-12 flex flex-col md:flex-row items-center">
+        <div class="w-full md:w-1/2 text-left mb-12 md:mb-0">
+          <h2 class="font-serif text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
+            Mulai Harimu dengan <br />
+            Kesegaran Baru
+          </h2>
+          <p class="font-sans text-gray-300 text-sm md:text-base mb-8 leading-relaxed max-w-lg">
+            Kami memberikanmu kesempatan istimewa untuk merasakan hari yang lebih baik dengan secangkir kopi berkualitas.
+          </p>
+          <button class="bg-kopikoe-gold hover:bg-yellow-500 hover:shadow-yellow-500/50 text-gray-900 font-serif font-bold text-base px-10 py-3 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 flex items-center gap-2">
+            Order Now
+          </button>
+        </div>
+        <div class="w-full md:w-1/2 relative flex justify-center items-center md:h-[500px]">
+          <img src="/assets/fotoft2.png" alt="Coffee Beans Background" class="absolute w-full md:w-[140%] object-cover opacity-100 scale-200 translate-x-60 translate-y-14" style="z-index: 0" />
+          <img src="/assets/fotoft1.png" alt="Coffee Cup" class="relative w-64 md:w-80 drop-shadow-2xl animate-spin" style="z-index: 10; animation-duration: 20s" />
+        </div>
+      </div>
+    </section>
+
+    <section class="relative w-full py-24 bg-cover bg-center overflow-hidden" style="background-image: url('/assets/background.jpg')">
+      <div class="absolute inset-0 bg-[#3E2713]/90"></div>
+      <div class="relative z-10 max-w-6xl mx-auto px-6 flex flex-col justify-center">
+        <div class="flex gap-4 mb-10 text-white">
+          <a href="#" class="hover:text-gray-300 transition">
+             <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" /></svg>
+          </a>
+          <a href="#" class="hover:text-gray-300 transition">
+            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" /></svg>
+          </a>
+          <a href="#" class="hover:text-gray-300 transition">
+             <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z" /></svg>
+          </a>
+          <a href="#" class="hover:text-gray-300 transition">
+             <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" /></svg>
+          </a>
+        </div>
+        <div class="text-center w-full">
+          <h2 class="font-serif text-3xl md:text-6xl font-bold text-white mb-4 leading-tight">
+            Berlangganan untuk info terbaru
+          </h2>
+          <p class="text-white/80 text-sm md:text-base mb-10 max-w-2xl mx-auto">
+            Jangan lewatkan kabar terbaru, promo menarik, tips kopi, dan penawaran spesial dari kami.
+          </p>
+          <form action="#" class="flex flex-col sm:flex-row max-w-2xl mx-auto">
+            <input type="email" placeholder="Enter your email" class="w-full px-6 py-4 text-gray-700 bg-[#FFFBF2] placeholder-gray-400 focus:outline-none rounded-t-md sm:rounded-l-md sm:rounded-t-none" />
+            <button type="submit" class="w-full sm:w-auto px-8 py-4 bg-[#F5C070] text-[#3E2713] font-serif font-bold text-lg hover:bg-[#e0ad60] transition duration-300 rounded-b-md sm:rounded-r-md sm:rounded-b-none">
+              Subscribe
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <footer class="relative bg-[#3E2713] text-white pt-20 pb-10 overflow-hidden">
+        <div class="absolute inset-0 z-0 opacity-40 pointer-events-none" style="background-image: url('/assets/background.jpg'); background-position: bottom; background-size: contain; background-repeat: no-repeat;"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-transparent to-[#3E2713] z-0"></div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-6 md:px-12">
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+            <div class="space-y-6">
+              <h2 class="text-5xl font-light" style="font-family: 'Clicker Script', cursive">KopiKoe</h2>
+              <p class="text-gray-300 text-sm leading-relaxed text-justify">
+                Kopikoe adalah rumah bagi para penikmat kopi yang mencari kualitas dan kepuasan sejati. Kami berkomitmen menyediakan kopi terbaik yang secara ilmiah terbukti mampu meningkatkan fokus dan membangun mood positif Anda.
+              </p>
+            </div>
+            <div class="lg:pl-8">
+              <h3 class="text-2xl font-serif font-bold mb-6">About</h3>
+              <ul class="space-y-4 text-gray-300">
+                <li><a href="#menu" class="hover:text-[#F5C070] transition">Menu</a></li>
+                <li><a href="#menu" class="hover:text-[#F5C070] transition">Features</a></li>
+                <li><a href="#about" class="hover:text-[#F5C070] transition">News & Blogs</a></li>
+                <li><a href="https://mail.google.com/mail/?view=cm&fs=1&to=kopikoe@kopikoesupport.com" class="hover:text-[#F5C070] transition">Help & Supports</a></li>
+              </ul>
+            </div>
+            <div>
+              <h3 class="text-2xl font-serif font-bold mb-6">Company</h3>
+              <ul class="space-y-4 text-gray-300">
+                <li><a href="#" class="hover:text-[#F5C070] transition">How we work</a></li>
+                <li><a href="https://mail.google.com/mail/?view=cm&fs=1&to=kopikoe@kopikoesupport.com" class="hover:text-[#F5C070] transition">Terms of service</a></li>
+                <li><a href="#" class="hover:text-[#F5C070] transition">Pricing</a></li>
+                <li><a href="https://mail.google.com/mail/?view=cm&fs=1&to=kopikoe@kopikoesupport.com" class="hover:text-[#F5C070] transition">FAQ</a></li>
+              </ul>
+            </div>
+            <div>
+              <h3 class="text-2xl font-serif font-bold mb-6">Contact Us</h3>
+              <div class="space-y-4 text-gray-300 text-sm">
+                <p class="leading-relaxed">
+                  Jalan Lenteng Agung Raya No.20 RT.5/RW.1 Lenteng Agung, Srengseng Sawah, Kec. Jagakarsa, Kota Jakarta Selatan, DKI Jakarta 12640
+                </p>
+                <p class="font-bold text-white text-lg">+62 897 9940 144</p>
+                <p>kopikoe@mail.com</p>
+                <p>www.kopikoe.com</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </section>
+
+    <div id="orderModal" class="fixed inset-0 z-[100] hidden overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+      <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+        <div class="fixed inset-0 bg-gray-900 bg-opacity-75 transition-opacity" onclick="closeOrderModal()"></div>
+        <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg w-full">
+          <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+            <h3 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+              <i class="fa-solid fa-cart-shopping text-orange-600"></i> Your Cart
+            </h3>
+            <div id="cart-items-container" class="max-h-60 overflow-y-auto mb-4 border-t border-b border-gray-100 py-2"></div>
+            <div class="flex justify-between items-center font-bold text-lg text-kopikoe-brown mb-6">
+              <span>Subtotal:</span>
+              <span id="cart-subtotal">Rp 0</span>
+            </div>
+            <div class="space-y-3 bg-gray-50 p-4 rounded-lg">
+              <div>
+                <label class="block text-sm font-medium text-gray-700">Your Name / Table No.</label>
+                <input type="text" id="order-customer" placeholder="e.g. Budi (Table 5)" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm px-3 py-2 focus:ring-orange-500 focus:border-orange-500" />
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-700">Order Type</label>
+                <select id="order-type" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm px-3 py-2 focus:ring-orange-500 focus:border-orange-500">
+                  <option value="Dine In">Dine In (Makan di tempat)</option>
+                  <option value="To Go">To Go (Bungkus)</option>
+                  <option value="Delivery">Delivery</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+            <button type="button" onclick="showPaymentModal()" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-kopikoe-gold text-base font-medium text-kopikoe-dark hover:bg-orange-400 focus:outline-none sm:ml-3 sm:w-auto sm:text-sm">
+              Checkout & Pay
+            </button>
+            <button type="button" onclick="closeOrderModal()" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="paymentModal" class="fixed inset-0 z-[110] hidden overflow-y-auto">
+      <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+        <div class="fixed inset-0 bg-gray-900 bg-opacity-75 transition-opacity"></div>
+        <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg w-full">
+          <div class="bg-white px-4 pt-5 pb-4 sm:p-6">
+            <h3 class="text-lg font-medium text-gray-900 mb-4">Payment Method</h3>
+            <div class="bg-gray-50 p-4 rounded mb-4">
+              <div class="flex justify-between font-bold text-gray-700 mb-2">
+                <span>Total to Pay:</span>
+                <span id="payment-total">Rp 0</span>
+              </div>
+              <p class="text-xs text-gray-500">*Includes 11% Tax</p>
+            </div>
+            <div class="space-y-2">
+              <label class="flex items-center space-x-3 p-3 border rounded cursor-pointer hover:bg-gray-50">
+                <input type="radio" name="payment" value="QRIS" checked class="h-4 w-4 text-orange-600" />
+                <span>QRIS (Scan Barcode)</span>
+              </label>
+              <label class="flex items-center space-x-3 p-3 border rounded cursor-pointer hover:bg-gray-50">
+                <input type="radio" name="payment" value="Cash" class="h-4 w-4 text-orange-600" />
+                <span>Cash (Bayar di Kasir)</span>
+              </label>
+              <label class="flex items-center space-x-3 p-3 border rounded cursor-pointer hover:bg-gray-50">
+                <input type="radio" name="payment" value="Transfer" class="h-4 w-4 text-orange-600" />
+                <span>Bank Transfer</span>
+              </label>
+            </div>
+          </div>
+          <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+            <button type="button" onclick="submitOrder()" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none sm:ml-3 sm:w-auto sm:text-sm">
+              Confirm Payment
+            </button>
+            <button type="button" onclick="closePaymentModal()" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
+              Back
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button
+      id="floating-cart"
+      onclick="openOrderModal()"
+      class="hidden fixed bottom-6 right-6 z-50 bg-kopikoe-gold text-kopikoe-dark p-4 rounded-full shadow-2xl hover:scale-110 transition-transform duration-300 border-2 border-white"
+    >
+      <i class="fa-solid fa-cart-shopping text-2xl"></i>
+      <span id="cart-count" class="absolute -top-2 -right-2 bg-red-600 text-white text-xs font-bold w-6 h-6 flex items-center justify-center rounded-full border-2 border-white">
+        0
+      </span>
+    </button>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/js/adminlte.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <script>
+      // --- GLOBAL STATE ---
+      let cart = [];
+
+      // --- DOM EVENT LISTENERS ---
+      document.addEventListener("DOMContentLoaded", function () {
+        // 1. Cek User Login
+        fetch("/api/current-user")
+          .then((res) => {
+            if (!res.ok) throw new Error("Network response was not ok");
+            return res.json();
+          })
+          .then((data) => {
+            const guestMenu = document.getElementById("guest-menu");
+            const userMenu = document.getElementById("user-menu");
+            const navUsername = document.getElementById("nav-username");
+            const userEmailDisplay = document.getElementById("userEmailDisplay");
+            const userAvatar = document.getElementById("user-avatar");
+
+            if (data.isLoggedIn) {
+              if (guestMenu) guestMenu.classList.add("hidden");
+              if (userMenu) userMenu.classList.remove("hidden");
+              if (navUsername) navUsername.innerText = data.name;
+              if (userEmailDisplay) userEmailDisplay.innerText = data.email;
+              if (userAvatar)
+                userAvatar.src = `https://ui-avatars.com/api/?name=${data.name}&background=FDBA74&color=2C1810`;
+            } else {
+              if (guestMenu) guestMenu.classList.remove("hidden");
+              if (userMenu) userMenu.classList.add("hidden");
+            }
+          })
+          .catch((err) => console.log("User not logged in or API error")); 
+
+        // 2. Load Produk Tambahan dari API
+        fetch("/api/products")
+          .then((res) => {
+            if (!res.ok) throw new Error("API Products not found");
+            return res.json();
+          })
+          .then((products) => {
+            const menuGrid = document.getElementById("menu-grid");
+            if (menuGrid && Array.isArray(products)) {
+              products.forEach((prod) => {
+                const card = `
+                  <div class="bg-kopikoe-cream p-8 rounded-lg border border-kopikoe-gold hover:shadow-xl transition duration-300 flex flex-col items-center group">
+                      <div class="h-48 w-full flex items-center justify-center mb-6 overflow-hidden">
+                          <img src="${prod.image}" alt="${prod.name}" class="h-full object-contain group-hover:scale-110 transition duration-500 drop-shadow-lg">
+                      </div>
+                      <h3 class="font-serif text-2xl font-bold text-kopikoe-brown mb-1">${prod.name}</h3>
+                      <p class="font-serif text-xs text-gray-500 mb-4 tracking-wide">${prod.description || "Premium Coffee"}</p>
+                      <p class="font-serif text-lg font-bold text-kopikoe-brown mb-6">Rp. ${new Intl.NumberFormat("id-ID").format(prod.price)}</p>
+                      <button onclick="addToCart('${prod.name}', ${prod.price})" 
+                          class="bg-kopikoe-gold hover:bg-yellow-400 hover:shadow-yellow-400/50 text-kopikoe-dark font-serif font-bold px-8 py-2 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 flex items-center gap-2">
+                          Order Now
+                      </button>
+                  </div>
+                `;
+                menuGrid.insertAdjacentHTML("beforeend", card);
+              });
+            }
+          })
+          .catch((err) => console.log("Product API not available yet"));
+      });
+
+      // Close dropdown when clicking outside
+      window.addEventListener("click", function (e) {
+        const userMenu = document.getElementById("user-menu");
+        const dropdown = document.getElementById("profileDropdown");
+        if (
+          userMenu &&
+          !userMenu.contains(e.target) &&
+          !dropdown.classList.contains("hidden")
+        ) {
+          dropdown.classList.add("hidden");
+        }
+      });
+
+      // --- UI HELPERS ---
+      function toggleProfileMenu() {
+        const dropdown = document.getElementById("profileDropdown");
+        dropdown.classList.toggle("hidden");
+      }
+
+      function updateFloatingCart() {
+        const btn = document.getElementById("floating-cart");
+        const badge = document.getElementById("cart-count");
+
+        const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
+        if (badge) badge.innerText = totalQty;
+
+        if (totalQty > 0) {
+          if (btn) {
+            btn.classList.remove("hidden");
+            btn.classList.add("flex");
+          }
+        } else {
+          if (btn) {
+            btn.classList.add("hidden");
+            btn.classList.remove("flex");
+          }
+        }
+      }
+
+      // --- CART LOGIC ---
+      function addToCart(itemName, itemPrice) {
+        const existingItem = cart.find((item) => item.name === itemName);
+        if (existingItem) {
+          existingItem.qty += 1;
+        } else {
+          cart.push({
+            name: itemName,
+            price: itemPrice,
+            qty: 1,
+          });
+        }
+
+        updateFloatingCart();
+
+        // Notifikasi
+        if (typeof Swal !== "undefined") {
+          const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 1500,
+            didOpen: (toast) => {
+              toast.addEventListener("mouseenter", Swal.stopTimer);
+              toast.addEventListener("mouseleave", Swal.resumeTimer);
+            },
+          });
+          Toast.fire({ icon: "success", title: `${itemName} added to cart` });
+        } else {
+          alert(`${itemName} added to cart!`);
+        }
+      }
+
+      function openCartModal() {
+        // Alias for openOrderModal if needed
+        openOrderModal();
+      }
+
+      function openOrderModal() {
+        document.getElementById("orderModal").classList.remove("hidden");
+        renderCartItems();
+      }
+
+      function closeOrderModal() {
+        document.getElementById("orderModal").classList.add("hidden");
+      }
+
+      function renderCartItems() {
+        const container = document.getElementById("cart-items-container");
+        const subtotalEl = document.getElementById("cart-subtotal");
+
+        container.innerHTML = ""; 
+        let subtotal = 0;
+
+        if (cart.length === 0) {
+          container.innerHTML = '<p class="text-sm text-gray-500 text-center italic py-2">Cart is empty.</p>';
+          subtotalEl.innerText = "Rp 0";
+          return;
+        }
+
+        cart.forEach((item, index) => {
+          subtotal += item.price * item.qty;
+          const itemRow = document.createElement("div");
+          itemRow.className = "flex justify-between items-center border-b border-gray-100 py-2 last:border-0";
+          itemRow.innerHTML = `
+              <div class="flex-1">
+                  <p class="text-sm font-bold text-gray-800">${item.name}</p>
+                  <p class="text-xs text-gray-500">@ ${new Intl.NumberFormat("id-ID").format(item.price)}</p>
+              </div>
+              <div class="flex items-center gap-2">
+                  <button onclick="changeQty(${index}, -1)" class="w-6 h-6 bg-gray-200 rounded text-xs hover:bg-gray-300 font-bold">-</button>
+                  <span class="text-sm font-bold w-4 text-center">${item.qty}</span>
+                  <button onclick="changeQty(${index}, 1)" class="w-6 h-6 bg-gray-200 rounded text-xs hover:bg-gray-300 font-bold">+</button>
+                  <button onclick="removeItem(${index})" class="ml-2 text-red-500 hover:text-red-700 text-xs">
+                      <i class="fa-solid fa-trash"></i>
+                  </button>
+              </div>
+          `;
+          container.appendChild(itemRow);
+        });
+
+        subtotalEl.innerText = new Intl.NumberFormat("id-ID", {
+          style: "currency",
+          currency: "IDR",
+        }).format(subtotal);
+      }
+
+      function changeQty(index, change) {
+        if (cart[index].qty + change > 0) {
+          cart[index].qty += change;
+        }
+        updateFloatingCart();
+        renderCartItems();
+      }
+
+      function removeItem(index) {
+        cart.splice(index, 1);
+        updateFloatingCart();
+        renderCartItems();
+      }
+
+      // --- PAYMENT & SUBMIT LOGIC ---
+      function showPaymentModal() {
+        const name = document.getElementById("order-customer").value;
+        if (cart.length === 0) {
+          alert("Cart is empty!");
+          return;
+        }
+        if (!name) {
+          alert("Please enter your name/table number");
+          return;
+        }
+
+        let subtotal = 0;
+        cart.forEach((item) => (subtotal += item.price * item.qty));
+        const tax = subtotal * 0.11;
+        const total = subtotal + tax;
+
+        document.getElementById("payment-total").innerText = new Intl.NumberFormat("id-ID", {
+          style: "currency",
+          currency: "IDR",
+        }).format(total);
+
+        document.getElementById("orderModal").classList.add("hidden");
+        document.getElementById("paymentModal").classList.remove("hidden");
+      }
+
+      function closePaymentModal() {
+        document.getElementById("paymentModal").classList.add("hidden");
+        document.getElementById("orderModal").classList.remove("hidden");
+      }
+
+      function submitOrder() {
+        const customerName = document.getElementById("order-customer").value;
+        const orderType = document.getElementById("order-type").value;
+        const paymentMethod = document.querySelector('input[name="payment"]:checked').value;
+
+        const payload = {
+          customerName: customerName,
+          orderType: orderType,
+          paymentMethod: paymentMethod,
+          items: cart,
+        };
+
+        fetch("/api/order/create", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.success) {
+              cart = []; 
+              updateFloatingCart();
+              window.location.href = `/invoice?id=${data.orderId}`;
+            } else {
+              alert("Order failed!");
+            }
+          });
+      }
+
+window.addEventListener("scroll", function () {
+        const navbar = document.getElementById("main-nav");
+        const logo = document.querySelector("#main-nav img"); // Mengambil elemen gambar logo
+
+        if (window.scrollY > 50) {
+          
+          // 1. UBAH NAVBAR (JADI LEBIH PENDEK)
+          // py-2  -> Padding vertikal jadi kecil (hanya 8px)
+          navbar.classList.add("bg-[#2C1810]/30", "backdrop-blur-md", "shadow-lg", "py-2");
+          navbar.classList.remove("py-6", "bg-transparent");
+
+          // 2. UBAH UKURAN LOGO (JADI LEBIH KECIL)
+          // Kita ubah tinggi logo supaya navbar bisa menyusut
+          logo.classList.remove("h-16", "md:h-24"); // Hapus ukuran besar awal
+          logo.classList.add("h-10", "md:h-14");    // Ganti jadi ukuran kecil (40px mobile / 56px desktop)
+          logo.classList.add("transition-all", "duration-300"); // Animasi halus logo
+
+        } else {
+          
+          // 3. KEMBALIKAN KE UKURAN NORMAL (BESAR)
+          navbar.classList.remove("bg-[#2C1810]/30", "backdrop-blur-md", "shadow-lg", "py-2");
+          navbar.classList.add("py-6", "bg-transparent");
+
+          // Kembalikan Logo Besar
+          logo.classList.remove("h-10", "md:h-14");
+          logo.classList.add("h-16", "md:h-24");
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Kopikoe Admin Dashboard</title>
+
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/css/adminlte.min.css">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #F5F6F8;
+        }
+
+        .main-sidebar {
+            background-color: #EAD8C0 !important;
+            border-right: 1px solid #dcc6a8;
+        }
+
+        .brand-link {
+            border-bottom: none !important;
+            color: #000 !important;
+            font-weight: 700;
+            font-size: 1.5rem;
+            padding-left: 1.5rem;
+        }
+
+        .nav-sidebar .nav-item .nav-link {
+            color: #4A4A4A;
+            font-weight: 600;
+            padding: 12px 20px;
+        }
+
+        .nav-sidebar .nav-item .nav-link.active {
+            background-color: #C6A984 !important;
+            color: #000 !important;
+            box-shadow: none !important;
+            border-radius: 0 25px 25px 0;
+            margin-right: 20px;
+        }
+
+        .nav-sidebar .nav-item .nav-link i {
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+
+        .sidebar-bottom {
+            position: absolute;
+            bottom: 20px;
+            width: 100%;
+        }
+
+        .card-stats {
+            border: none;
+            border-radius: 10px;
+            color: white;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+            min-height: 140px;
+        }
+
+        .bg-gradient-revenue {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .bg-gradient-dish {
+            background: #df89b5;
+        }
+
+        .bg-gradient-customer {
+            background: #847cec;
+        }
+
+        .stats-icon-bg {
+            background: rgba(255, 255, 255, 0.2);
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+
+        .card-outline-custom {
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .table thead th {
+            border-bottom: none;
+            color: #888;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .table td {
+            vertical-align: middle;
+            border-top: 1px solid #f4f4f4;
+            font-size: 0.9rem;
+            padding: 15px 0.75rem;
+        }
+
+        .status-select {
+            border: none;
+            border-radius: 20px;
+            padding: 5px 10px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: white;
+            cursor: pointer;
+            appearance: none;
+            text-align: center;
+        }
+
+        .status-select option {
+            color: black;
+            background: white;
+        }
+
+        .status-completed {
+            background-color: #6CE5B1;
+        }
+
+        .status-preparing {
+            background-color: #A79BF4;
+        }
+
+        .status-pending {
+            background-color: #FDBA74;
+        }
+
+        .menu-item-img {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .btn-view-all {
+            background-color: #F5F6F8;
+            color: #5d69ba;
+            font-weight: 600;
+            border: none;
+            width: 100%;
+            padding: 12px;
+        }
+
+        .btn-filter {
+            border: 1px solid #ddd;
+            color: #333;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+
+<body class="hold-transition sidebar-mini layout-fixed">
+    <div class="wrapper">
+
+        <nav class="main-header navbar navbar-expand navbar-white navbar-light border-bottom-0"
+            style="background: transparent;">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+                </li>
+            </ul>
+        </nav>
+
+        <aside class="main-sidebar elevation-0">
+            <a href="/frontend/index.html" class="brand-link">
+                <span class="brand-text">Kopikoe</span>
+            </a>
+            <div class="sidebar">
+                <nav class="mt-4">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu">
+                        <li class="nav-item">
+                            <a href="/admin/dashboard" class="nav-link active">
+                                <i class="nav-icon fas fa-home"></i>
+                                <p>Dashboard</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/admin/profile" class="nav-link">
+                                <i class="nav-icon fas fa-clipboard-list"></i>
+                                <p>Profile</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/admin/product" class="nav-link">
+                                <i class="nav-icon fas fa-utensils"></i>
+                                <p>Product</p>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="sidebar-bottom">
+                    <ul class="nav nav-pills nav-sidebar flex-column">
+                        <li class="nav-item">
+                            <a href="/admin/settings" class="nav-link">
+                                <i class="nav-icon fas fa-cog"></i>
+                                <p>Settings</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/auth/logout" class="nav-link text-danger">
+                                <i class="nav-icon fas fa-sign-out-alt"></i>
+                                <p>Logout</p>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </aside>
+
+        <div class="content-wrapper" style="background-color: #fff;">
+            <div class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1 class="m-0" style="font-weight: 700;">Dashboard</h1>
+                            <p class="text-muted" id="current-date">Loading date...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <section class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-6">
+                            <div class="card-stats bg-gradient-revenue">
+                                <div class="d-flex justify-content-between">
+                                    <div class="stats-icon-bg"><i class="fas fa-dollar-sign"></i></div>
+                                </div>
+                                <h3 class="font-weight-bold mt-2" id="total-revenue">Rp 0</h3>
+                                <p class="mb-0 text-white-50">Total Revenue</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="card-stats bg-gradient-dish">
+                                <div class="d-flex justify-content-between">
+                                    <div class="stats-icon-bg"><i class="fas fa-bookmark"></i></div>
+                                </div>
+                                <h3 class="font-weight-bold mt-2" id="total-dish">0</h3>
+                                <p class="mb-0 text-white-50">Total Dish Ordered</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="card-stats bg-gradient-customer">
+                                <div class="d-flex justify-content-between">
+                                    <div class="stats-icon-bg"><i class="fas fa-user-friends"></i></div>
+                                </div>
+                                <h3 class="font-weight-bold mt-2" id="total-customer">0</h3>
+                                <p class="mb-0 text-white-50">Total Customers</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-3">
+                        <div class="col-lg-8">
+                            <div class="card card-outline-custom">
+                                <div class="card-header bg-white border-0">
+                                    <h3 class="card-title font-weight-bold mt-2">Order Report</h3>
+                                </div>
+                                <div class="card-body p-0">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Customer</th>
+                                                <th>Menu Order</th>
+                                                <th>Total Payment</th>
+                                                <th>Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="order-table-body">
+                                            <tr>
+                                                <td colspan="4" class="text-center">Loading Data...</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <div class="card card-outline-custom mb-3">
+                                <div class="card-header bg-white border-0">
+                                    <h3 class="card-title font-weight-bold">Most Ordered</h3>
+                                </div>
+                                <div class="card-body">
+                                    <ul class="list-unstyled" id="most-ordered-list">
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="card card-outline-custom">
+                                <div class="card-header bg-white border-0">
+                                    <h3 class="card-title font-weight-bold">Most Type of Order</h3>
+                                </div>
+                                <div class="card-body text-center">
+                                    <canvas id="orderTypeChart"
+                                        style="min-height: 180px; height: 180px; max-height: 180px; max-width: 100%;"></canvas>
+                                    <div class="d-flex justify-content-around mt-3" id="chart-legend">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/js/adminlte.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        // Set tanggal hari ini
+        const optionsDate = { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric' };
+        document.getElementById('current-date').innerText = new Date().toLocaleDateString('en-US', optionsDate);
+
+        // Fungsi Format Rupiah
+        const formatRupiah = (number) => {
+            return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(number);
+        }
+
+        // Variabel Chart global agar bisa diupdate
+        let myChart = null;
+
+        // FUNGSI UTAMA: LOAD DATA DARI SERVER
+        function loadDashboardData() {
+            fetch('/api/admin/dashboard-data')
+                .then(response => response.json())
+                .then(data => {
+                    console.log("Dashboard Data:", data);
+
+                    // 1. Update Kartu Atas
+                    document.getElementById('total-revenue').innerText = formatRupiah(data.totalRevenue);
+                    document.getElementById('total-dish').innerText = data.totalDish;
+                    document.getElementById('total-customer').innerText = data.totalCustomers;
+
+                    // 2. Update Table Order Report
+                    const tableBody = document.getElementById('order-table-body');
+                    tableBody.innerHTML = '';
+
+                    data.recentOrders.forEach(order => {
+                        // Gabungkan nama item
+                        const itemNames = order.items.map(i => `${i.name} (x${i.qty})`).join(', ');
+
+                        // Tentukan warna select berdasarkan status saat ini
+                        let statusClass = '';
+                        if (order.status === 'completed') statusClass = 'status-completed';
+                        else if (order.status === 'preparing') statusClass = 'status-preparing';
+                        else statusClass = 'status-pending';
+
+                        const row = `
+                            <tr>
+                                <td><span class="font-weight-bold">${order.customer}</span><br><small class="text-muted">${order.id}</small></td>
+                                <td>${itemNames}</td>
+                                <td>${formatRupiah(order.total)}</td>
+                                <td>
+                                    <select onchange="updateStatus('${order.id}', this)" class="status-select ${statusClass}">
+                                        <option value="pending" ${order.status === 'pending' ? 'selected' : ''}>Pending</option>
+                                        <option value="preparing" ${order.status === 'preparing' ? 'selected' : ''}>Preparing</option>
+                                        <option value="completed" ${order.status === 'completed' ? 'selected' : ''}>Completed</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        `;
+                        tableBody.innerHTML += row;
+                    });
+
+                    // 3. Update Most Ordered List
+                    const listContainer = document.getElementById('most-ordered-list');
+                    listContainer.innerHTML = '';
+                    data.mostOrdered.forEach(item => {
+                        // Gambar dummy statis sesuai nama menu (bisa diperbaiki nanti agar dinamis)
+                        let imgUrl = '/assets/ftkp1.png';
+                        if (item.name.includes('Arabicano')) imgUrl = '/assets/ftkp2.png';
+                        if (item.name.includes('Expresso')) imgUrl = '/assets/ftkp3.png';
+
+                        const listItem = `
+                            <li class="media mb-3 pb-3 border-bottom">
+                                <img src="${imgUrl}" class="mr-3 menu-item-img" alt="${item.name}">
+                                <div class="media-body">
+                                    <h6 class="mt-0 mb-1 font-weight-bold">${item.name}</h6>
+                                    <small class="text-muted">${item.count} dishes ordered</small>
+                                </div>
+                            </li>
+                        `;
+                        listContainer.innerHTML += listItem;
+                    });
+
+                    // 4. Update Chart
+                    updateChart(data.typeCounts);
+                })
+                .catch(err => console.error("Error loading data:", err));
+        }
+
+        // FUNGSI UPDATE STATUS (Dipanggil saat select berubah)
+        window.updateStatus = function (orderId, selectElement) {
+            const newStatus = selectElement.value;
+
+            // Ubah warna background select langsung agar responsif
+            selectElement.className = 'status-select'; // Reset class
+            if (newStatus === 'completed') selectElement.classList.add('status-completed');
+            else if (newStatus === 'preparing') selectElement.classList.add('status-preparing');
+            else selectElement.classList.add('status-pending');
+
+            // Kirim ke Server
+            fetch('/api/admin/update-order-status', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ orderId, newStatus })
+            })
+                .then(res => res.json())
+                .then(response => {
+                    if (response.success) {
+                        const Toast = Swal.mixin({
+                            toast: true, position: 'top-end', showConfirmButton: false, timer: 3000
+                        });
+                        Toast.fire({ icon: 'success', title: 'Status updated!' });
+                    }
+                });
+        };
+
+        // FUNGSI RENDER CHART
+        function updateChart(typeCounts) {
+            const ctx = document.getElementById('orderTypeChart').getContext('2d');
+            const dataValues = [
+                typeCounts['Dine In'] || 0,
+                typeCounts['To Go'] || 0,
+                typeCounts['Delivery'] || 0
+            ];
+
+            // Update Legend Text Angka
+            const legendContainer = document.getElementById('chart-legend');
+            legendContainer.innerHTML = `
+                <div class="text-left"><small class="text-muted"><i class="fas fa-circle text-pink" style="color:#FF8096"></i> Dine In</small><br><strong>${dataValues[0]}</strong></div>
+                <div class="text-left"><small class="text-muted"><i class="fas fa-circle text-warning" style="color:#FDBA74"></i> To Go</small><br><strong>${dataValues[1]}</strong></div>
+                <div class="text-left"><small class="text-muted"><i class="fas fa-circle text-primary" style="color:#66AEFF"></i> Delivery</small><br><strong>${dataValues[2]}</strong></div>
+            `;
+
+            if (myChart) {
+                myChart.data.datasets[0].data = dataValues;
+                myChart.update();
+            } else {
+                myChart = new Chart(ctx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Dine In', 'To Go', 'Delivery'],
+                        datasets: [{
+                            data: dataValues,
+                            backgroundColor: ['#FF8096', '#FDBA74', '#66AEFF'],
+                            borderWidth: 0,
+                        }]
+                    },
+                    options: {
+                        maintainAspectRatio: false,
+                        responsive: true,
+                        cutout: '70%',
+                        plugins: { legend: { display: false } }
+                    }
+                });
+            }
+        }
+
+        // Panggil saat halaman dimuat
+        document.addEventListener('DOMContentLoaded', loadDashboardData);
+
+    </script>
+</body>
+
+</html>

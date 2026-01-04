@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Settings - KoPiKoe</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'poppins': ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        'sidebar-active': '#F3EFEA',
+                        'icon-active': '#A1887F',
+                        'icon-inactive': '#E0E0E0',
+                        'text-header': '#2C2C2C',
+                        'text-sub': '#888888',
+                        'btn-brown': '#A68B6C',
+                        'input-bg': '#F9F9F9',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .dropdown-menu {
+            transition: all 0.2s ease-in-out;
+            transform-origin: top;
+        }
+
+        .hidden-custom {
+            display: none;
+            opacity: 0;
+            transform: scaleY(0.95);
+        }
+
+        .show-custom {
+            display: block;
+            opacity: 1;
+            transform: scaleY(1);
+        }
+    </style>
+</head>
+
+<body class="bg-[#FDFDFD] font-poppins h-screen flex overflow-hidden">
+
+    <aside
+        class="w-24 bg-white border-r border-gray-100 flex flex-col items-center py-8 z-20 shadow-[2px_0_5px_-2px_rgba(0,0,0,0.05)]">
+        <div class="mb-12 h-8 w-8"></div>
+        <nav class="flex flex-col gap-8 w-full px-4 items-center">
+            <a href="/customer/dashboard"
+                class="flex items-center justify-center w-12 h-12 hover:bg-gray-50 rounded-lg transition-all group">
+                <i class="fa-solid fa-table-cells-large text-xl text-icon-inactive group-hover:text-gray-400"></i>
+            </a>
+            <a href="/customer/history.html"
+                class="flex items-center justify-center w-12 h-12 hover:bg-gray-50 rounded-lg transition-all group">
+                <i class="fa-regular fa-clock text-xl text-icon-inactive group-hover:text-gray-400"></i>
+            </a>
+            <a href="#" class="flex items-center justify-center w-12 h-12 bg-sidebar-active rounded-lg transition-all">
+                <i class="fa-solid fa-gear text-xl text-icon-active"></i>
+            </a>
+        </nav>
+    </aside>
+
+    <main class="flex-1 p-8 md:p-12 overflow-y-auto" onclick="closeAllDropdowns(event)">
+
+        <header class="mb-8">
+            <h1 class="text-text-header font-semibold text-xl tracking-wide">
+                Get ready your account!
+            </h1>
+        </header>
+
+        <div class="bg-white w-full rounded-xl p-8 md:p-10 shadow-sm border border-gray-50">
+
+            <div class="flex flex-col md:flex-row items-start md:items-center justify-between mb-10 gap-6">
+                <div class="flex items-center gap-6">
+                    <div class="w-20 h-20 rounded-full overflow-hidden">
+                        <img id="profile-img" src="" alt="Profile" class="w-full h-full object-cover">
+                    </div>
+                    <div>
+                        <h2 class="text-xl font-semibold text-gray-800" id="display-name">Loading...</h2>
+                        <p class="text-text-sub text-sm" id="display-email">...</p>
+                    </div>
+                </div>
+                <button
+                    class="bg-btn-brown hover:bg-[#8E7558] text-white px-6 py-2 rounded-lg text-sm font-medium transition shadow-sm">
+                    Edit
+                </button>
+            </div>
+
+            <form action="#" class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8 mb-10">
+
+                <div class="flex flex-col gap-2">
+                    <label class="text-gray-600 font-medium text-sm">Full Name</label>
+                    <input type="text" id="input-fullname" readonly
+                        class="w-full bg-gray-100 border-none rounded-lg px-4 py-3 text-sm text-gray-500 cursor-not-allowed">
+                </div>
+                
+                <div class="flex flex-col gap-2">
+                    <label class="text-gray-600 font-medium text-sm">Email (Nick Name)</label>
+                    <input type="text" id="input-email" readonly
+                        class="w-full bg-gray-100 border-none rounded-lg px-4 py-3 text-sm text-gray-500 cursor-not-allowed">
+                </div>
+
+                <div class="flex flex-col gap-2 relative">
+                    <label class="text-gray-600 font-medium text-sm">Gender</label>
+                    <div class="relative dropdown-container">
+                        <div onclick="toggleDropdown('gender-dropdown')"
+                            class="w-full bg-input-bg rounded-lg px-4 py-3 text-sm text-gray-400 cursor-pointer flex justify-between items-center select-trigger">
+                            <span id="gender-selected">Masukkan Jenis Kelamin anda</span>
+                            <i class="fa-solid fa-chevron-down text-xs"></i>
+                        </div>
+                        <div id="gender-dropdown"
+                            class="dropdown-menu hidden-custom absolute z-50 w-full mt-1 bg-white border border-gray-100 rounded-lg shadow-lg overflow-hidden">
+                            <div onclick="selectOption('gender', 'Male')"
+                                class="px-4 py-2 hover:bg-btn-brown hover:text-white cursor-pointer text-sm text-gray-700 transition-colors">
+                                Male</div>
+                            <div onclick="selectOption('gender', 'Female')"
+                                class="px-4 py-2 hover:bg-btn-brown hover:text-white cursor-pointer text-sm text-gray-700 transition-colors">
+                                Female</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex flex-col gap-2 relative">
+                    <label class="text-gray-600 font-medium text-sm">Language</label>
+                    <div class="relative dropdown-container">
+                        <div onclick="toggleDropdown('lang-dropdown')"
+                            class="w-full bg-input-bg rounded-lg px-4 py-3 text-sm text-gray-400 cursor-pointer flex justify-between items-center select-trigger">
+                            <span id="lang-selected">Your First Name</span>
+                            <i class="fa-solid fa-chevron-down text-xs"></i>
+                        </div>
+                        <div id="lang-dropdown"
+                            class="dropdown-menu hidden-custom absolute z-30 w-full mt-1 bg-white border border-gray-100 rounded-lg shadow-lg overflow-hidden">
+                            <div onclick="selectOption('lang', 'English')"
+                                class="px-4 py-2 hover:bg-btn-brown hover:text-white cursor-pointer text-sm text-gray-700 transition-colors">
+                                English</div>
+                            <div onclick="selectOption('lang', 'Bahasa Indonesia')"
+                                class="px-4 py-2 hover:bg-btn-brown hover:text-white cursor-pointer text-sm text-gray-700 transition-colors">
+                                Bahasa Indonesia</div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <div class="flex justify-end gap-4">
+                <button
+                    class="px-8 py-3 rounded-lg border border-gray-300 text-gray-500 text-sm font-medium hover:bg-gray-50 transition">
+                    Discard
+                </button>
+                <button
+                    class="px-8 py-3 rounded-lg bg-btn-brown text-white text-sm font-medium hover:bg-[#8E7558] transition shadow-md">
+                    Save
+                </button>
+            </div>
+
+        </div>
+
+    </main>
+
+    <script>
+        // Fungsi untuk menampilkan/menyembunyikan dropdown
+        function toggleDropdown(id) {
+            // Tutup semua dropdown lain dulu
+            const allDropdowns = document.querySelectorAll('.dropdown-menu');
+            allDropdowns.forEach(drop => {
+                if (drop.id !== id) {
+                    drop.classList.remove('show-custom');
+                    drop.classList.add('hidden-custom');
+                }
+            });
+
+            // Toggle dropdown yang diklik
+            const dropdown = document.getElementById(id);
+            if (dropdown.classList.contains('hidden-custom')) {
+                dropdown.classList.remove('hidden-custom');
+                dropdown.classList.add('show-custom');
+            } else {
+                dropdown.classList.remove('show-custom');
+                dropdown.classList.add('hidden-custom');
+            }
+        }
+
+        // Fungsi ketika opsi dipilih
+        function selectOption(type, value) {
+            // Update teks yang dipilih
+            const displayElement = document.getElementById(type + '-selected');
+            displayElement.innerText = value;
+            displayElement.classList.remove('text-gray-400');
+            displayElement.classList.add('text-gray-700'); // Ubah warna teks jadi lebih gelap
+
+            // Tutup dropdown
+            const dropdown = document.getElementById(type + '-dropdown');
+            dropdown.classList.remove('show-custom');
+            dropdown.classList.add('hidden-custom');
+        }
+
+        // Fungsi untuk menutup dropdown jika klik di luar area
+        function closeAllDropdowns(event) {
+            if (!event.target.closest('.dropdown-container')) {
+                const allDropdowns = document.querySelectorAll('.dropdown-menu');
+                allDropdowns.forEach(drop => {
+                    drop.classList.remove('show-custom');
+                    drop.classList.add('hidden-custom');
+                });
+            }
+        }
+
+        // SCRIPT ISI DATA PROFILE
+            document.addEventListener("DOMContentLoaded", function () {
+                fetch('/api/current-user')
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.isLoggedIn) {
+                            const nameCapitalized = data.name.charAt(0).toUpperCase() + data.name.slice(1);
+
+                            // Isi Bagian Header Profile
+                            document.getElementById('display-name').innerText = nameCapitalized;
+                            document.getElementById('display-email').innerText = data.email;
+                            document.getElementById('profile-img').src = `https://ui-avatars.com/api/?name=${data.name}&background=A68B6C&color=fff`;
+
+                            // Isi Form Input
+                            document.getElementById('input-fullname').value = nameCapitalized;
+                            document.getElementById('input-email').value = data.email;
+                        } else {
+                            window.location.href = '/login';
+                        }
+                    });
+            });
+    </script>
+
+</body>
+
+</html>

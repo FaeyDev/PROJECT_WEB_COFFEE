@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <title>History Purchase - KoPiKoe</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { 'poppins': ['Poppins', 'sans-serif'] },
+                    colors: {
+                        'sidebar-active': '#F3EFEA', 'icon-active': '#A1887F',
+                        'icon-inactive': '#E0E0E0', 'text-header': '#4A4A68',
+                        'table-head': '#DBCDB8',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-[#FDFDFD] font-poppins h-screen flex overflow-hidden">
+
+    <aside
+        class="w-24 bg-white border-r border-gray-100 flex flex-col items-center py-8 z-20 shadow-[2px_0_5px_-2px_rgba(0,0,0,0.05)]">
+        <div class="mb-12 h-8 w-8"></div>
+        <nav class="flex flex-col gap-8 w-full px-4 items-center">
+            <a href="/customer/dashboard"
+                class="flex items-center justify-center w-12 h-12 hover:bg-gray-50 rounded-lg transition-all group">
+                <i class="fa-solid fa-table-cells-large text-xl text-icon-inactive group-hover:text-gray-400"></i>
+            </a>
+            <a href="/customer/history.html"
+                class="flex items-center justify-center w-12 h-12 bg-sidebar-active rounded-lg transition-all">
+                <i class="fa-regular fa-clock text-xl text-icon-active"></i>
+            </a>
+            <a href="/customer/settings"
+                class="flex items-center justify-center w-12 h-12 hover:bg-gray-50 rounded-lg transition-all group">
+                <i class="fa-solid fa-gear text-xl text-icon-inactive group-hover:text-gray-400"></i>
+            </a>
+        </nav>
+    </aside>
+
+    <main class="flex-1 p-8 md:p-12 overflow-y-auto">
+        <header class="mb-10">
+            <h1 class="text-text-header font-semibold text-xl tracking-wide">History Purchase</h1>
+        </header>
+
+        <div class="bg-white w-full min-h-[500px] p-8 rounded-xl shadow-sm border border-gray-50">
+
+            <div class="w-full overflow-x-auto">
+                <table class="w-full text-center border-collapse">
+                    <thead>
+                        <tr class="bg-table-head text-black">
+                            <th class="py-3 font-medium text-sm md:text-base w-1/4 rounded-l-lg">Tanggal</th>
+                            <th class="py-3 font-medium text-sm md:text-base w-1/4">Order ID</th>
+                            <th class="py-3 font-medium text-sm md:text-base w-1/4">Items</th>
+                            <th class="py-3 font-medium text-sm md:text-base w-1/4 rounded-r-lg">Total</th>
+                            <th class="py-3 font-medium text-sm md:text-base w-1/4 rounded-r-lg">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="history-body" class="text-black text-sm md:text-base">
+                        <tr>
+                            <td colspan="5" class="py-8 text-gray-400">Loading history...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const formatRupiah = (num) => new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(num);
+
+            fetch('/api/user/history')
+                .then(res => res.json())
+                .then(orders => {
+                    const tbody = document.getElementById('history-body');
+                    tbody.innerHTML = '';
+
+                    if (orders.length === 0) {
+                        tbody.innerHTML = '<tr><td colspan="5" class="py-8 text-gray-400">Belum ada riwayat pesanan.</td></tr>';
+                        return;
+                    }
+
+                    orders.forEach(order => {
+                        // Gabungkan nama item jika lebih dari 1
+                        const itemNames = order.items.map(i => `${i.name} (${i.qty})`).join(', ');
+
+                        // Warna status badge
+                        let statusColor = 'bg-gray-100 text-gray-600';
+                        if (order.status === 'completed') statusColor = 'bg-green-100 text-green-700';
+                        if (order.status === 'preparing') statusColor = 'bg-blue-100 text-blue-700';
+                        if (order.status === 'pending') statusColor = 'bg-orange-100 text-orange-700';
+
+                        const row = `
+                            <tr class="border-b border-gray-100 hover:bg-gray-50 transition">
+                                <td class="py-4 text-gray-600">${order.date}</td>
+                                <td class="py-4 font-medium text-gray-800">${order.id}</td>
+                                <td class="py-4 text-gray-600 max-w-xs truncate">${itemNames}</td>
+                                <td class="py-4 font-bold text-gray-800">${formatRupiah(order.total)}</td>
+                                <td class="py-4">
+                                    <span class="px-3 py-1 rounded-full text-xs font-semibold ${statusColor}">
+                                        ${order.status.toUpperCase()}
+                                    </span>
+                                </td>
+                            </tr>
+                        `;
+                        tbody.innerHTML += row;
+                    });
+                })
+                .catch(err => console.error("Error fetching history:", err));
+        });
+    </script>
+</body>
+
+</html>

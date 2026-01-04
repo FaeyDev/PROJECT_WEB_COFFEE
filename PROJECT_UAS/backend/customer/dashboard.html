@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard - KoPiKoe</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { 'poppins': ['Poppins', 'sans-serif'] },
+                    colors: {
+                        'sidebar-active': '#F3EFEA',
+                        'icon-active': '#A1887F',
+                        'icon-inactive': '#E0E0E0',
+                        'text-header': '#4A4A68',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-[#FDFDFD] font-poppins h-screen flex overflow-hidden">
+
+    <aside
+        class="w-24 bg-white border-r border-gray-100 flex flex-col items-center py-8 z-20 shadow-[2px_0_5px_-2px_rgba(0,0,0,0.05)]">
+        <div class="mb-12 h-8 w-8"></div>
+        <nav class="flex flex-col gap-8 w-full px-4 items-center">
+            <a href="/customer/dashboard"
+                class="flex items-center justify-center w-12 h-12 bg-sidebar-active rounded-lg transition-all">
+                <i class="fa-solid fa-table-cells-large text-xl text-icon-active"></i>
+            </a>
+            <a href="/customer/history.html"
+                class="flex items-center justify-center w-12 h-12 hover:bg-gray-50 rounded-lg transition-all group">
+                <i class="fa-regular fa-clock text-xl text-icon-inactive group-hover:text-gray-400"></i>
+            </a>
+            <a href="/customer/settings"
+                class="flex items-center justify-center w-12 h-12 hover:bg-gray-50 rounded-lg transition-all group">
+                <i class="fa-solid fa-gear text-xl text-icon-inactive group-hover:text-gray-400"></i>
+            </a>
+            <a href="/auth/logout"
+                class="flex items-center justify-center w-12 h-12 hover:bg-red-50 rounded-lg transition-all group mt-auto">
+                <i class="fa-solid fa-right-from-bracket text-xl text-red-300 group-hover:text-red-500"></i>
+            </a>
+        </nav>
+    </aside>
+
+    <main class="flex-1 p-8 md:p-12 overflow-y-auto relative">
+        <header class="mb-8">
+            <h1 class="text-text-header font-semibold text-xl tracking-wide">
+                Welcome, <span id="welcome-name">Loading...</span>
+            </h1>
+        </header>
+
+        <div class="relative w-full h-[650px] rounded-2xl overflow-hidden shadow-sm group">
+            <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?q=80&w=1920&auto=format&fit=crop"
+                alt="Coffee Top View"
+                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+            <div class="absolute inset-0 bg-black/40"></div>
+            <div
+                class="absolute inset-0 flex flex-col justify-center items-center text-center text-white px-6 md:px-20">
+                <p class="text-lg md:text-xl font-medium leading-relaxed max-w-4xl drop-shadow-md mb-8">
+                    Rasakan kehangatan kopi terbaik yang diracik khusus untuk menemani harimu.<br
+                        class="hidden md:block">
+                    Yuk jelajahi menu spesial kami dan temukan cita rasa kopi yang pas buat kamu.
+                </p>
+                <p class="text-lg md:text-xl font-semibold italic opacity-90 drop-shadow-md">
+                    "Satu Cangkir, Banyak Cerita. Yuk Nikmati Kopimu!"
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            fetch('/api/current-user')
+                .then(res => res.json())
+                .then(data => {
+                    if (data.isLoggedIn) {
+                        // Mengubah nama sesuai akun login (Huruf kapital di awal)
+                        const formattedName = data.name.charAt(0).toUpperCase() + data.name.slice(1);
+                        document.getElementById('welcome-name').innerText = formattedName;
+                    } else {
+                        window.location.href = '/login';
+                    }
+                });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,398 @@
+[
+  {
+    "id": "ORD-001",
+    "customer": "Budi (Meja 1)",
+    "items": [
+      {
+        "name": "Cappucino",
+        "qty": 2,
+        "price": 25000
+      },
+      {
+        "name": "Croissant",
+        "qty": 1,
+        "price": 20000
+      }
+    ],
+    "total": 70000,
+    "status": "completed",
+    "type": "Dine In",
+    "date": "2025-12-26"
+  },
+  {
+    "id": "ORD-002",
+    "customer": "Siti (Gojek)",
+    "items": [
+      {
+        "name": "Arabicano",
+        "qty": 3,
+        "price": 20000
+      }
+    ],
+    "total": 60000,
+    "status": "completed",
+    "type": "Delivery",
+    "date": "2025-12-26"
+  },
+  {
+    "id": "ORD-003",
+    "customer": "Andi (Takeaway)",
+    "items": [
+      {
+        "name": "Expresso",
+        "qty": 1,
+        "price": 18000
+      }
+    ],
+    "total": 18000,
+    "status": "completed",
+    "type": "To Go",
+    "date": "2025-12-26"
+  },
+  {
+    "id": "ORD-1766700806885",
+    "customer": "Rina",
+    "items": [
+      {
+        "name": "Cappuccino",
+        "price": 25000,
+        "qty": 1
+      }
+    ],
+    "subtotal": 25000,
+    "tax": 2750,
+    "total": 27750,
+    "paymentMethod": "QRIS",
+    "type": "Dine In",
+    "status": "completed",
+    "date": "December 26, 2025"
+  },
+  {
+    "id": "ORD-1766700886908",
+    "customer": "Rina",
+    "items": [
+      {
+        "name": "Cappuccino",
+        "price": 20000,
+        "qty": 5
+      }
+    ],
+    "subtotal": 100000,
+    "tax": 11000,
+    "total": 111000,
+    "paymentMethod": "Cash",
+    "type": "Dine In",
+    "status": "completed",
+    "date": "December 26, 2025"
+  },
+  {
+    "id": "ORD-1766702047215",
+    "customer": "Rina",
+    "items": [
+      {
+        "name": "Cappuccino",
+        "price": 25000,
+        "qty": 3
+      }
+    ],
+    "subtotal": 75000,
+    "tax": 8250,
+    "total": 83250,
+    "paymentMethod": "Cash",
+    "type": "Dine In",
+    "status": "completed",
+    "date": "December 26, 2025"
+  },
+  {
+    "id": "ORD-1766702070333",
+    "customer": "Rina",
+    "items": [
+      {
+        "name": "Macchiato",
+        "price": 35000,
+        "qty": 1
+      },
+      {
+        "name": "Expresso",
+        "price": 35000,
+        "qty": 1
+      },
+      {
+        "name": "Arabicano",
+        "price": 20000,
+        "qty": 1
+      },
+      {
+        "name": "Cappuccino",
+        "price": 25000,
+        "qty": 1
+      }
+    ],
+    "subtotal": 115000,
+    "tax": 12650,
+    "total": 127650,
+    "paymentMethod": "Cash",
+    "type": "Dine In",
+    "status": "completed",
+    "date": "December 26, 2025"
+  },
+  {
+    "id": "ORD-1766703777121",
+    "customer": "Rina",
+    "items": [
+      {
+        "name": "Cappuccino",
+        "price": 25000,
+        "qty": 1
+      },
+      {
+        "name": "Macchiato",
+        "price": 35000,
+        "qty": 1
+      },
+      {
+        "name": "Expresso",
+        "price": 35000,
+        "qty": 1
+      }
+    ],
+    "subtotal": 95000,
+    "tax": 10450,
+    "total": 105450,
+    "paymentMethod": "Cash",
+    "type": "Dine In",
+    "status": "completed",
+    "date": "December 26, 2025"
+  },
+  {
+    "id": "ORD-1766704296819",
+    "customer": "Faey",
+    "email": "faey@gmail.com",
+    "items": [
+      {
+        "name": "Cappuccino",
+        "price": 25000,
+        "qty": 1
+      },
+      {
+        "name": "Arabicano",
+        "price": 20000,
+        "qty": 1
+      },
+      {
+        "name": "Macchiato",
+        "price": 35000,
+        "qty": 1
+      },
+      {
+        "name": "Expresso",
+        "price": 35000,
+        "qty": 1
+      }
+    ],
+    "subtotal": 115000,
+    "tax": 12650,
+    "total": 127650,
+    "paymentMethod": "Cash",
+    "type": "Dine In",
+    "status": "completed",
+    "date": "December 26, 2025"
+  },
+  {
+    "id": "ORD-1766752407060",
+    "customer": "Rina",
+    "email": "faey@gmail.com",
+    "items": [
+      {
+        "name": "Arabicano",
+        "price": 20000,
+        "qty": 7
+      },
+      {
+        "name": "Cappuccino",
+        "price": 25000,
+        "qty": 1
+      },
+      {
+        "name": "Macchiato",
+        "price": 35000,
+        "qty": 1
+      },
+      {
+        "name": "Expresso",
+        "price": 35000,
+        "qty": 1
+      }
+    ],
+    "subtotal": 235000,
+    "tax": 25850,
+    "total": 260850,
+    "paymentMethod": "Cash",
+    "type": "Dine In",
+    "status": "completed",
+    "date": "December 26, 2025"
+  },
+  {
+    "id": "ORD-1766752714033",
+    "customer": "Faey",
+    "email": "faey@gmail.com",
+    "items": [
+      {
+        "name": "Arabicano",
+        "price": 20000,
+        "qty": 1
+      }
+    ],
+    "subtotal": 20000,
+    "tax": 2200,
+    "total": 22200,
+    "paymentMethod": "Cash",
+    "type": "Dine In",
+    "status": "completed",
+    "date": "December 26, 2025"
+  },
+  {
+    "id": "ORD-1766754769613",
+    "customer": "Faey",
+    "email": "anjay@gmail.com",
+    "items": [
+      {
+        "name": "Arabicano",
+        "price": 20000,
+        "qty": 1
+      }
+    ],
+    "subtotal": 20000,
+    "tax": 2200,
+    "total": 22200,
+    "paymentMethod": "Cash",
+    "type": "Dine In",
+    "status": "completed",
+    "date": "December 26, 2025"
+  },
+  {
+    "id": "ORD-1766754909961",
+    "customer": "Faey",
+    "email": "tes@gmail.com",
+    "items": [
+      {
+        "name": "Cappuccino",
+        "price": 25000,
+        "qty": 1
+      },
+      {
+        "name": "Macchiato",
+        "price": 35000,
+        "qty": 1
+      },
+      {
+        "name": "Arabicano",
+        "price": 20000,
+        "qty": 1
+      },
+      {
+        "name": "Expresso",
+        "price": 35000,
+        "qty": 1
+      }
+    ],
+    "subtotal": 115000,
+    "tax": 12650,
+    "total": 127650,
+    "paymentMethod": "Cash",
+    "type": "To Go",
+    "status": "completed",
+    "date": "December 26, 2025"
+  },
+  {
+    "id": "ORD-1766755348338",
+    "customer": "Faey",
+    "email": "tes123@gmail.com",
+    "items": [
+      {
+        "name": "Macchiato",
+        "price": 35000,
+        "qty": 2
+      },
+      {
+        "name": "Cappuccino",
+        "price": 25000,
+        "qty": 2
+      },
+      {
+        "name": "Arabicano",
+        "price": 20000,
+        "qty": 1
+      },
+      {
+        "name": "Expresso",
+        "price": 35000,
+        "qty": 1
+      }
+    ],
+    "subtotal": 175000,
+    "tax": 19250,
+    "total": 194250,
+    "paymentMethod": "Cash",
+    "type": "To Go",
+    "status": "completed",
+    "date": "December 26, 2025"
+  },
+  {
+    "id": "ORD-1767458003938",
+    "customer": "rina",
+    "email": "customer@gmail.com",
+    "items": [
+      {
+        "name": "Macchiato",
+        "price": 35000,
+        "qty": 1
+      }
+    ],
+    "subtotal": 35000,
+    "tax": 3850,
+    "total": 38850,
+    "paymentMethod": "Cash",
+    "type": "To Go",
+    "status": "completed",
+    "date": "January 3, 2026"
+  },
+  {
+    "id": "ORD-1767458614292",
+    "customer": "Faey",
+    "email": "Guest",
+    "items": [
+      {
+        "name": "Choco Mocha",
+        "price": 30000,
+        "qty": 1
+      }
+    ],
+    "subtotal": 30000,
+    "tax": 3300,
+    "total": 33300,
+    "paymentMethod": "Cash",
+    "type": "Dine In",
+    "status": "completed",
+    "date": "January 3, 2026"
+  },
+  {
+    "id": "ORD-1767529408734",
+    "customer": "Rina",
+    "email": "customer@gmail.com",
+    "items": [
+      {
+        "name": "Ristretto",
+        "price": 18000,
+        "qty": 1
+      }
+    ],
+    "subtotal": 18000,
+    "tax": 1980,
+    "total": 19980,
+    "paymentMethod": "Cash",
+    "type": "Dine In",
+    "status": "pending",
+    "date": "January 4, 2026"
+  }
+]

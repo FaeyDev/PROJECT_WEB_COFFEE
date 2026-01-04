@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KoPiKoe Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .bg-custom-purple {
+            background-color: #725CFA;
+        }
+
+        .text-custom-purple {
+            color: #725CFA;
+        }
+
+        /* Style untuk ikon mata di password */
+        .password-toggle {
+            cursor: pointer;
+            color: #9CA3AF;
+        }
+
+        .password-toggle:hover {
+            color: #6B7280;
+        }
+    </style>
+</head>
+
+<body class="bg-white flex min-h-screen w-full">
+
+    <div class="hidden md:block w-1/2 relative bg-black">
+        <img src="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?q=80&w=1000&auto=format&fit=crop"
+            alt="Barista Coffee" class="absolute inset-0 w-full h-full object-cover opacity-90">
+    </div>
+
+    <div class="w-full md:w-1/2 flex flex-col justify-center items-center p-8 md:p-16 bg-white">
+
+        <div class="w-full max-w-md">
+
+            <div class="text-center mb-8">
+                <div class="flex justify-center mb-1">
+                    <img src="/assets/logo kopikoe.png" alt="Logo KoPiKoe"
+                        class="w-28 h-28 object-contain opacity-80">
+                </div>
+
+                <h2 class="text-2xl font-bold text-gray-900 mb-2">welcome to kopikoe!</h2>
+                <p class="text-sm text-gray-500 leading-relaxed">
+                    Please log in to continue.<br>
+                    We're happy to have you here!
+                </p>
+            </div>
+
+<form action="/auth/login" method="POST">
+    <div class="mb-5">
+        <label class="block text-gray-400 text-xs mb-2 ml-1">Email Address</label>
+        <input type="email" name="username" required
+            class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 text-gray-700 placeholder-gray-400 bg-white"
+            placeholder="">
+    </div>
+
+    <div class="mb-6">
+        <label class="block text-gray-400 text-xs mb-2 ml-1">Password</label>
+        <div class="relative">
+            <input type="password" id="passwordInput" name="password" required
+                class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 text-gray-700 placeholder-gray-400 pr-10 bg-white"
+                placeholder="">
+
+            <div class="absolute inset-y-0 right-0 pr-3 flex items-center">
+                <i class="fa-regular fa-eye-slash password-toggle text-sm"></i>
+            </div>
+        </div>
+    </div>
+
+    <button type="submit"
+        class="w-full bg-custom-purple hover:bg-[#5b48cf] text-white font-semibold py-3 rounded-lg transition duration-200 shadow-sm mb-4">
+        Login
+    </button>
+
+    <div class="text-center text-sm text-gray-500 mb-6">
+        Don't have an account? <a href="/register" class="text-custom-purple font-semibold hover:underline">Register</a>
+    </div>
+</form>
+        </div>
+    </div>
+
+</body>
+
+</html>

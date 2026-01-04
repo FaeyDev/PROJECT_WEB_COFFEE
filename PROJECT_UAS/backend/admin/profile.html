@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Kopikoe - Profile</title>
+
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/css/adminlte.min.css">
+
+    <style>
+        /* --- STYLE CSS (TETAP SAMA SEPERTI KODE ANDA) --- */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #F5F6F8;
+        }
+
+        .main-sidebar {
+            background-color: #EAD8C0 !important;
+            border-right: 1px solid #dcc6a8;
+            min-height: 100vh;
+        }
+
+        .brand-link {
+            border-bottom: none !important;
+            color: #000 !important;
+            font-weight: 700;
+            font-size: 1.5rem;
+            padding-left: 1.5rem;
+        }
+
+        .nav-sidebar .nav-item .nav-link {
+            color: #4A4A4A;
+            font-weight: 600;
+            padding: 12px 20px;
+        }
+
+        .nav-sidebar .nav-item .nav-link.active {
+            background-color: #C6A984 !important;
+            color: #000 !important;
+            box-shadow: none !important;
+            border-radius: 0 25px 25px 0;
+            margin-right: 20px;
+        }
+
+        .nav-sidebar .nav-item .nav-link i {
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+
+        .sidebar-bottom {
+            position: absolute;
+            bottom: 20px;
+            width: 100%;
+        }
+
+        .content-wrapper {
+            background-color: #fff !important;
+            padding: 30px 40px;
+        }
+
+        .profile-header {
+            margin-top: 10px;
+            margin-bottom: 50px;
+        }
+
+        .profile-img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-right: 25px;
+        }
+
+        .profile-name {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #000;
+            margin-bottom: 0;
+        }
+
+        .profile-email {
+            color: #888;
+            font-size: 0.95rem;
+        }
+
+        .form-group label {
+            font-weight: 500;
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 1rem;
+        }
+
+        .form-control-custom {
+            background-color: #F9F9F9;
+            border: none;
+            border-radius: 8px;
+            height: 55px;
+            padding: 10px 20px;
+            color: #555;
+            font-size: 0.95rem;
+        }
+
+        .form-control-custom:focus {
+            background-color: #F0F0F0;
+            box-shadow: none;
+            color: #333;
+        }
+
+        .btn-edit-profile {
+            background-color: #A69076;
+            color: white;
+            border: none;
+            padding: 8px 25px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .btn-edit-profile:hover {
+            background-color: #8e7b64;
+            color: white;
+        }
+
+        .btn-discard {
+            background-color: white;
+            border: 1px solid #ccc;
+            color: #666;
+            padding: 12px 40px;
+            border-radius: 8px;
+            font-weight: 500;
+            margin-right: 10px;
+        }
+
+        .btn-save {
+            background-color: #A69076;
+            color: white;
+            border: none;
+            padding: 12px 40px;
+            border-radius: 8px;
+            font-weight: 500;
+            box-shadow: 0 4px 6px rgba(166, 144, 118, 0.3);
+        }
+
+        .btn-save:hover {
+            background-color: #8e7b64;
+            color: white;
+        }
+
+        .form-spacer {
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+
+<body class="hold-transition sidebar-mini layout-fixed">
+    <div class="wrapper">
+
+        <nav class="main-header navbar navbar-expand navbar-white navbar-light border-bottom-0"
+            style="background: transparent;">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+                </li>
+            </ul>
+        </nav>
+
+        <aside class="main-sidebar elevation-0">
+            <a href="/admin/dashboard" class="brand-link">
+                <span class="brand-text">Kopikoe</span>
+            </a>
+
+            <div class="sidebar">
+                <nav class="mt-4">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu">
+                        <li class="nav-item">
+                            <a href="/admin/dashboard" class="nav-link">
+                                <i class="nav-icon fas fa-home"></i>
+                                <p>Dashboard</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/admin/profile" class="nav-link active">
+                                <i class="nav-icon fas fa-clipboard-list"></i>
+                                <p>Profile</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/admin/product" class="nav-link">
+                                <i class="nav-icon fas fa-utensils"></i>
+                                <p>Product</p>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="sidebar-bottom">
+                    <ul class="nav nav-pills nav-sidebar flex-column" style="margin-top: auto;">
+                        <li class="nav-item">
+                            <a href="/admin/settings" class="nav-link">
+                                <i class="nav-icon fas fa-cog"></i>
+                                <p>Settings</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/auth/logout" class="nav-link text-danger">
+                                <i class="nav-icon fas fa-sign-out-alt"></i>
+                                <p>Logout</p>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </aside>
+
+        <div class="content-wrapper">
+            <h2 style="font-weight: 600; margin-bottom: 40px;">Profile</h2>
+            <div class="container-fluid pl-0">
+                <div class="d-flex align-items-center justify-content-between profile-header">
+                    <div class="d-flex align-items-center">
+                        <img src="" id="profile-img" alt="User Profile" class="profile-img">
+                        <div>
+                            <h4 class="profile-name" id="display-name">Loading...</h4>
+                            <span class="profile-email" id="display-email">...</span>
+                        </div>
+                    </div>
+                    <div>
+                        <button class="btn btn-edit-profile">Edit</button>
+                    </div>
+                </div>
+
+                <form>
+                    <div class="form-group form-spacer">
+                        <label>Nama Lengkap</label>
+                        <input type="text" class="form-control-custom w-100" id="input-name" placeholder="Nama lengkap"
+                            readonly>
+                    </div>
+                    <div class="form-group form-spacer">
+                        <label>Email (Username)</label>
+                        <input type="text" class="form-control-custom w-100" id="input-email" placeholder="Email"
+                            readonly>
+                    </div>
+                    <div class="form-group form-spacer">
+                        <label>Role</label>
+                        <input type="text" class="form-control-custom w-100" id="input-role" placeholder="Role"
+                            readonly>
+                    </div>
+                    <div class="d-flex justify-content-end mt-5">
+                        <button type="button" class="btn btn-discard">Discard</button>
+                        <button type="button" class="btn btn-save">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/js/adminlte.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            // Panggil API User saat halaman dimuat
+            fetch('/api/current-user')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.isLoggedIn) {
+                        // Format nama (Huruf pertama kapital)
+                        const formattedName = data.name.charAt(0).toUpperCase() + data.name.slice(1);
+
+                        // Update elemen HTML dengan ID
+                        $('#display-name').text(formattedName);
+                        $('#display-email').text(data.email);
+                        $('#input-name').val(formattedName);
+                        $('#input-email').val(data.email);
+                        $('#input-role').val(data.role.toUpperCase());
+
+                        // Update gambar profil (Avatar generator)
+                        $('#profile-img').attr('src', `https://ui-avatars.com/api/?name=${data.name}&background=A69076&color=fff`);
+                    } else {
+                        // Jika belum login, lempar ke login page
+                        window.location.href = '/login';
+                    }
+                })
+                .catch(err => console.error("Error fetching user data:", err));
+        });
+    </script>
+</body>
+
+</html>

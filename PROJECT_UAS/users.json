@@ -1,0 +1,56 @@
+[
+  {
+    "id": 1766691516104,
+    "email": "agustinovfreeze@gmail.com",
+    "password": "Frizi",
+    "role": "admin"
+  },
+  {
+    "id": 1766691535167,
+    "email": "freezekaban@gmail.com",
+    "password": "Frizi",
+    "role": "customer"
+  },
+  {
+    "id": 1766691699852,
+    "email": "freeze@gmail.com",
+    "password": "password123",
+    "role": "customer"
+  },
+  {
+    "id": 1766695039167,
+    "email": "faey@gmail.com",
+    "password": "Faey",
+    "role": "customer"
+  },
+  {
+    "id": 1766754724232,
+    "email": "anjay@gmail.com",
+    "password": "Anjay",
+    "role": "customer"
+  },
+  {
+    "id": 1766754860265,
+    "email": "tes@gmail.com",
+    "password": "Tes",
+    "role": "customer"
+  },
+  {
+    "id": 1766755250737,
+    "email": "tes123@gmail.com",
+    "password": "tes",
+    "role": "customer"
+  },
+  {
+    "id": 1767457872660,
+    "email": "admincoba@gmail.com",
+    "password": "admin",
+    "role": "admin"
+  },
+  {
+    "id": 1767457923143,
+    "email": "customer@gmail.com",
+    "password": "customer",
+    "role": "customer"
+  }
+]

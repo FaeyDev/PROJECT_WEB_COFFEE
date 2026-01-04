@@ -1,0 +1,58 @@
+[
+  {
+    "id": 1767524648901,
+    "name": "Hazelnut Latte",
+    "price": 33000,
+    "image": "/assets/ftkp9.png",
+    "description": "30% Hazelnut | 70% Susu"
+  },
+  {
+    "id": 1767525216240,
+    "name": "Ristretto",
+    "price": 18000,
+    "image": "/assets/ftkp11.png",
+    "description": "100% Kopi"
+  },
+  {
+    "id": 1767525523413,
+    "name": "Red Velvet Latte",
+    "price": 33000,
+    "image": "/assets/ftkp12.png",
+    "description": "20% Powder Velvet | 80% Susu"
+  },
+  {
+    "id": 1767525603471,
+    "name": "Piccolo",
+    "price": 25000,
+    "image": "/assets/ftkp10.png",
+    "description": "40% Ristretto | 60% Susu"
+  },
+  {
+    "id": 1767526238296,
+    "name": "Spanish Latte",
+    "price": 30000,
+    "image": "/assets/ftkp13.png",
+    "description": "40% Expresso | 60% Susu"
+  },
+  {
+    "id": 1767526416179,
+    "name": "Chocolate Milk",
+    "price": 28000,
+    "image": "/assets/ftkp14.png",
+    "description": "30% Chocolate | 70% Susu"
+  },
+  {
+    "id": 1767527640607,
+    "name": "Einspänner",
+    "price": 30000,
+    "image": "/assets/ftkp15.png",
+    "description": "40% Americano | 60% Cream Dingin"
+  },
+  {
+    "id": 1767527933686,
+    "name": "Flat White",
+    "price": 30000,
+    "image": "/assets/ftkp16.png",
+    "description": "30% Expresso | 70% Foam Milk"
+  }
+]
