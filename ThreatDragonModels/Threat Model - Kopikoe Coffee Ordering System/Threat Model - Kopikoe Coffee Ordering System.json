@@ -23,24 +23,116 @@
     "diagrams": [
       {
         "id": 0,
-        "title": "New STRIDE diagram",
+        "title": "Info Disclosure",
         "diagramType": "STRIDE",
         "placeholder": "New STRIDE diagram description",
         "thumbnail": "./public/content/images/thumbnail.stride.jpg",
         "version": "2.6.2",
-        "cells": []
+        "cells": [],
+        "description": "Endpoint mengembalikan seluruh req.session.user (termasuk field password plaintext) ke client"
       },
       {
         "id": 1,
-        "title": "Main Flow",
+        "title": "Spoofing",
         "diagramType": "STRIDE",
         "placeholder": "New STRIDE diagram description",
         "thumbnail": "./public/content/images/thumbnail.stride.jpg",
         "version": "2.6.2",
-        "cells": []
+        "cells": [],
+        "description": "Secret session 'kunci-rahasia-kopikoe' hardcoded & publik di GitHub → penyerang bisa memalsukan cookie sesi admin"
+      },
+      {
+        "id": 2,
+        "title": "Elevation of Privilege",
+        "diagramType": "STRIDE",
+        "placeholder": "New STRIDE diagram description",
+        "thumbnail": "./public/content/images/thumbnail.stride.jpg",
+        "version": "2.6.2",
+        "cells": [],
+        "description": "Role admin didapat otomatis jika email mengandung kata \"admin\" — siapa pun bisa daftar sebagai admin"
+      },
+      {
+        "id": 3,
+        "title": "Tampering",
+        "diagramType": "STRIDE",
+        "placeholder": "New STRIDE diagram description",
+        "thumbnail": "./public/content/images/thumbnail.stride.jpg",
+        "version": "2.6.2",
+        "cells": [],
+        "description": "Harga produk (item.price) dikirim dan dipercaya dari client, tidak divalidasi ke products.json → harga bisa dimanipulasi"
+      },
+      {
+        "id": 4,
+        "title": "Info Disclosure",
+        "diagramType": "STRIDE",
+        "placeholder": "New STRIDE diagram description",
+        "thumbnail": "./public/content/images/thumbnail.stride.jpg",
+        "version": "2.6.2",
+        "cells": [],
+        "description": "Tidak ada pengecekan otentikasi/kepemilikan — siapa pun bisa lihat invoice orang lain jika tahu/menebak ID"
+      },
+      {
+        "id": 5,
+        "title": "Elevation of Privilege",
+        "diagramType": "STRIDE",
+        "placeholder": "New STRIDE diagram description",
+        "thumbnail": "./public/content/images/thumbnail.stride.jpg",
+        "version": "2.6.2",
+        "cells": [],
+        "description": "Hanya cek requireAuth, tidak cek role === 'admin' — customer biasa bisa akses halaman admin"
+      },
+      {
+        "id": 6,
+        "title": "Spoofing",
+        "diagramType": "STRIDE",
+        "placeholder": "New STRIDE diagram description",
+        "thumbnail": "./public/content/images/thumbnail.stride.jpg",
+        "version": "2.6.2",
+        "cells": [],
+        "description": "Tidak ada rate limiting / account lockout → rentan brute-force credential"
+      },
+      {
+        "id": 7,
+        "title": "Info Disclosure",
+        "diagramType": "STRIDE",
+        "placeholder": "New STRIDE diagram description",
+        "thumbnail": "./public/content/images/thumbnail.stride.jpg",
+        "version": "2.6.2",
+        "cells": [],
+        "description": "Password disimpan plaintext, bukan hash"
+      },
+      {
+        "id": 8,
+        "title": "Tampering",
+        "diagramType": "STRIDE",
+        "placeholder": "New STRIDE diagram description",
+        "thumbnail": "./public/content/images/thumbnail.stride.jpg",
+        "version": "2.6.2",
+        "cells": [],
+        "description": "Tidak ada CSRF token pada form/session cookie"
+      },
+      {
+        "id": 9,
+        "title": "Denial of Service",
+        "diagramType": "STRIDE",
+        "placeholder": "New STRIDE diagram description",
+        "thumbnail": "./public/content/images/thumbnail.stride.jpg",
+        "version": "2.6.2",
+        "cells": [],
+        "description": "Tulis file JSON tidak atomik — race condition saat banyak request bersamaan bisa korup file, membuat seluruh app gagal baca data"
+      },
+      {
+        "id": 10,
+        "title": "Repudiation",
+        "diagramType": "STRIDE",
+        "placeholder": "New STRIDE diagram description",
+        "thumbnail": "./public/content/images/thumbnail.stride.jpg",
+        "version": "2.6.2",
+        "cells": [],
+        "description": "Tidak ada log audit siapa mengubah status pesanan / menghapus produk"
       }
     ],
-    "diagramTop": 2,
+    "diagramTop": 11,
     "reviewer": "April Rustianto",
     "threatTop": 0
   }
