@@ -44,8 +44,10 @@
               "isTrustBoundary": true,
               "hasOpenThreats": false,
               "crossingFlows": [
-                "457cf4e4-7676-46ef-99bc-cc1d6318419b",
-                "b3967c2b-42cb-41cc-98ba-2bd2de9e0ef5"
+                "c9b0a036-89c2-4600-b812-4044eec08051",
+                "3035e1b4-53fb-45d0-8ab0-fbf550d480c6",
+                "a2082f77-8437-4271-9c11-3fc0a32b1e49",
+                "83d8a7e0-ee0f-4d86-a06c-eb5a443bb8ad"
               ],
               "containedElements": [
                 "1369684a-35fe-4c6b-a176-bac29c065fcc",
@@ -79,7 +81,9 @@
               "hasOpenThreats": false,
               "crossingFlows": [
                 "4b594ec3-4263-4c67-b833-630a780aec65",
-                "2d37ae29-68e7-40de-8f80-2076e1192fa8"
+                "2d37ae29-68e7-40de-8f80-2076e1192fa8",
+                "8af4d6d4-b78a-4528-877f-80cf8ddf5ea5",
+                "55de3a51-e80c-4709-8690-18790266684a"
               ],
               "containedElements": [
                 "94a6cead-f449-4941-b52a-9c44d2eb804a",
@@ -221,8 +225,8 @@
                 "text": "Auth Service"
               },
               "body": {
-                "stroke": "#333333",
-                "strokeWidth": 1.5,
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "strokeDasharray": null
               }
             },
@@ -319,9 +323,27 @@
               "isTrustBoundary": false,
               "outOfScope": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": false,
+              "hasOpenThreats": true,
               "providesAuthentication": false,
-              "threats": []
+              "threats": [
+                {
+                  "id": "56800a9a-56a3-4d39-8a72-c60c14514aad",
+                  "title": "Login tanpa MFA",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Spoofing",
+                  "description": "Login endpoint tanpa MFA → penyerang menyamar sebagai user",
+                  "mitigation": "Implementasi MFA (OTP email/SMS) untuk login",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 3,
+                  "score": ""
+                }
+              ],
+              "threatFrequency": {
+                "spoofing": 3,
+                "repudiation": 0
+              }
             }
           },
           {
@@ -338,8 +360,8 @@
                 "text": "Order Service"
               },
               "body": {
-                "stroke": "#333333",
-                "strokeWidth": 1.5,
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "strokeDasharray": null
               }
             },
@@ -436,9 +458,40 @@
               "isTrustBoundary": false,
               "outOfScope": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": false,
+              "hasOpenThreats": true,
               "providesAuthentication": false,
-              "threats": []
+              "threats": [
+                {
+                  "id": "1a5ac7a4-22c9-4129-92c9-39675ba44eaa",
+                  "title": "Tidak ada audit log",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Repudiation",
+                  "description": "Tidak ada audit log → user bisa menyangkal pernah checkout",
+                  "mitigation": "Simpan log setiap transaksi dengan timestamp & user ID",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 6,
+                  "score": ""
+                },
+                {
+                  "id": "06832f12-378a-40ad-9902-7c0e9badd4c0",
+                  "title": "Checkout tanpa rate limit",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Spoofing",
+                  "description": "Tidak ada rate limiting → rawan flooding saat checkout",
+                  "mitigation": "Terapkan rate limiting (mis. max 5 request/menit/IP)",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 8,
+                  "score": ""
+                }
+              ],
+              "threatFrequency": {
+                "spoofing": 1,
+                "repudiation": 1
+              }
             }
           },
           {
@@ -689,8 +742,8 @@
                 "text": "Customer Browser"
               },
               "body": {
-                "stroke": "#333333",
-                "strokeWidth": 1.5,
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "strokeDasharray": null
               }
             },
@@ -787,9 +840,27 @@
               "isTrustBoundary": false,
               "outOfScope": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": false,
+              "hasOpenThreats": true,
               "providesAuthentication": false,
-              "threats": []
+              "threats": [
+                {
+                  "id": "5aaaae23-1651-4e2d-9636-a16dca9ea6c5",
+                  "title": "Payload login tanpa validasi",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Spoofing",
+                  "description": "Payload login dimanipulasi tanpa validasi input",
+                  "mitigation": "Validasi & sanitasi input di server sid",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 4,
+                  "score": ""
+                }
+              ],
+              "threatFrequency": {
+                "spoofing": 1,
+                "repudiation": 0
+              }
             }
           },
           {
@@ -806,8 +877,8 @@
                 "text": "Admin"
               },
               "body": {
-                "stroke": "#333333",
-                "strokeWidth": 1.5,
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "strokeDasharray": null
               }
             },
@@ -904,9 +975,27 @@
               "isTrustBoundary": false,
               "outOfScope": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": false,
+              "hasOpenThreats": true,
               "providesAuthentication": false,
-              "threats": []
+              "threats": [
+                {
+                  "id": "1441e942-ec88-4bab-b306-cd841cb268e7",
+                  "title": "Admin endpoint tanpa role check",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Spoofing",
+                  "description": "Endpoint admin bisa diakses user biasa (no role check)",
+                  "mitigation": "Terapkan role-based access control (RBAC) di setiap route admin",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 9,
+                  "score": ""
+                }
+              ],
+              "threatFrequency": {
+                "spoofing": 2,
+                "repudiation": 0
+              }
             }
           },
           {
@@ -923,8 +1012,8 @@
                 "text": "Payment Gateway \n( 3rd Gateway )"
               },
               "body": {
-                "stroke": "#333333",
-                "strokeWidth": 1.5,
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "strokeDasharray": null
               }
             },
@@ -1021,9 +1110,27 @@
               "isTrustBoundary": false,
               "outOfScope": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": false,
+              "hasOpenThreats": true,
               "providesAuthentication": false,
-              "threats": []
+              "threats": [
+                {
+                  "id": "4dc0af48-0d4e-4992-b8d5-9c14db70af28",
+                  "title": "Data transaksi tanpa enkripsi",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Spoofing",
+                  "description": "Data kartu/transaksi terkirim tanpa enkripsi (bukan HTTPS)",
+                  "mitigation": "Enforce HTTPS/TLS untuk semua endpoint, terutama payment",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 7,
+                  "score": ""
+                }
+              ],
+              "threatFrequency": {
+                "spoofing": 1,
+                "repudiation": 0
+              }
             }
           },
           {
@@ -1040,8 +1147,8 @@
                 "text": "Users DB"
               },
               "body": {
-                "stroke": "#333333",
-                "strokeWidth": 1.5,
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "strokeDasharray": null
               }
             },
@@ -1138,9 +1245,34 @@
               "isTrustBoundary": false,
               "outOfScope": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": false,
+              "hasOpenThreats": true,
               "providesAuthentication": false,
-              "threats": []
+              "threats": [
+                {
+                  "id": "a5fb80b4-0b0b-4970-85f9-1925a754c79b",
+                  "title": "Password plaintext",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Spoofing",
+                  "description": "Password disimpan plaintext / hash lemah",
+                  "mitigation": "Hash password dengan bcrypt (cost factor ≥ 12)",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 10,
+                  "score": ""
+                }
+              ],
+              "threatFrequency": {
+                "spoofing": 1,
+                "repudiation": 0
+              }
+            },
+            "tools": {
+              "items": [
+                "boundary",
+                "button-remove"
+              ],
+              "name": null
             }
           },
           {
@@ -1259,90 +1391,6 @@
               "threats": []
             },
             "zIndex": 10
-          },
-          {
-            "shape": "flow",
-            "attrs": {
-              "line": {
-                "stroke": "#333333",
-                "targetMarker": {
-                  "name": "block"
-                },
-                "sourceMarker": {
-                  "name": ""
-                },
-                "strokeDasharray": null
-              }
-            },
-            "width": 200,
-            "height": 100,
-            "zIndex": 10,
-            "connector": "smooth",
-            "data": {
-              "type": "tm.Flow",
-              "name": "Login Request [HTTPS]",
-              "description": "",
-              "outOfScope": false,
-              "isTrustBoundary": false,
-              "reasonOutOfScope": "",
-              "hasOpenThreats": false,
-              "isBidirectional": false,
-              "isEncrypted": false,
-              "isPublicNetwork": false,
-              "protocol": "",
-              "threats": [],
-              "trustBoundaryIds": [
-                "f7ce7340-b9e8-456a-bb70-a61cd8bd461b"
-              ]
-            },
-            "labels": [
-              "Login Request [HTTPS]"
-            ],
-            "id": "457cf4e4-7676-46ef-99bc-cc1d6318419b",
-            "source": {
-              "cell": "1369684a-35fe-4c6b-a176-bac29c065fcc",
-              "port": "38d4fb22-3532-48bd-99da-b48d710b1976"
-            },
-            "target": {
-              "cell": "0866f013-3e6d-456c-8545-c9f8ded374f4",
-              "port": "638da2d3-5ea5-4fed-9ad7-ca6c0412b982"
-            },
-            "vertices": [
-              {
-                "x": 730,
-                "y": 200
-              }
-            ],
-            "tools": {
-              "items": [
-                "boundary",
-                "button-remove",
-                "vertices",
-                "source-arrowhead",
-                "target-arrowhead",
-                "boundary",
-                "button-remove",
-                "vertices",
-                "source-arrowhead",
-                "target-arrowhead",
-                "boundary",
-                "button-remove",
-                "vertices",
-                "source-arrowhead",
-                "target-arrowhead",
-                "boundary",
-                "button-remove",
-                "vertices",
-                "source-arrowhead",
-                "target-arrowhead",
-                "boundary",
-                "button-remove",
-                "vertices",
-                "source-arrowhead",
-                "target-arrowhead"
-              ],
-              "name": null
-            }
           },
           {
             "shape": "flow",
@@ -1503,15 +1551,15 @@
             },
             "vertices": [
               {
-                "x": 1090,
-                "y": 390
+                "x": 1070,
+                "y": 350
               },
               {
-                "x": 1090,
-                "y": 460
+                "x": 1070,
+                "y": 420
               },
               {
-                "x": 1030,
+                "x": 1000,
                 "y": 500
               }
             ]
@@ -1536,7 +1584,7 @@
             "connector": "smooth",
             "data": {
               "type": "tm.Flow",
-              "name": "Data Flow",
+              "name": "Checkout Request [HTTPS]",
               "description": "",
               "outOfScope": false,
               "isTrustBoundary": false,
@@ -1552,9 +1600,9 @@
               ]
             },
             "labels": [
-              "Data Flow"
+              "Checkout Request [HTTPS]"
             ],
-            "id": "b3967c2b-42cb-41cc-98ba-2bd2de9e0ef5",
+            "id": "c9b0a036-89c2-4600-b812-4044eec08051",
             "source": {
               "cell": "1369684a-35fe-4c6b-a176-bac29c065fcc",
               "port": "2f57902c-fbca-45e6-a326-fd697d5459ec"
@@ -1563,7 +1611,338 @@
               "cell": "342a06a1-8c5a-496f-9e5f-10b141a0bfd4",
               "port": "2f57902c-fbca-45e6-a326-fd697d5459ec"
             },
-            "vertices": []
+            "vertices": [
+              {
+                "x": 660,
+                "y": 250
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Login Request [HTTPS]",
+              "description": "",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [],
+              "trustBoundaryIds": [
+                "f7ce7340-b9e8-456a-bb70-a61cd8bd461b"
+              ]
+            },
+            "labels": [
+              "Login Request [HTTPS]"
+            ],
+            "id": "3035e1b4-53fb-45d0-8ab0-fbf550d480c6",
+            "source": {
+              "cell": "1369684a-35fe-4c6b-a176-bac29c065fcc",
+              "port": "38d4fb22-3532-48bd-99da-b48d710b1976"
+            },
+            "target": {
+              "cell": "0866f013-3e6d-456c-8545-c9f8ded374f4",
+              "port": "638da2d3-5ea5-4fed-9ad7-ca6c0412b982"
+            },
+            "vertices": [
+              {
+                "x": 765,
+                "y": 190
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Write Order Data",
+              "description": "",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [],
+              "trustBoundaryIds": [
+                "1268f4ae-f271-4aff-83ff-6de53b4992da"
+              ]
+            },
+            "labels": [
+              "Write Order Data"
+            ],
+            "id": "8af4d6d4-b78a-4528-877f-80cf8ddf5ea5",
+            "source": {
+              "cell": "342a06a1-8c5a-496f-9e5f-10b141a0bfd4",
+              "port": "38d4fb22-3532-48bd-99da-b48d710b1976"
+            },
+            "target": {
+              "cell": "0c64c060-034c-40a2-ad01-765f9db78625",
+              "port": "638da2d3-5ea5-4fed-9ad7-ca6c0412b982"
+            },
+            "vertices": [
+              {
+                "x": 890,
+                "y": 520
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Payment Request",
+              "description": "",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [],
+              "trustBoundaryIds": []
+            },
+            "labels": [
+              "Payment Request"
+            ],
+            "id": "bdcd6a38-4bc8-4d7d-a646-435befecbb4d",
+            "source": {
+              "cell": "342a06a1-8c5a-496f-9e5f-10b141a0bfd4",
+              "port": "bad1f11c-e985-43e8-ac73-03ca5d7c8b6f"
+            },
+            "target": {
+              "cell": "7165b243-dee9-4d33-995e-ecf01d45092b",
+              "port": "38d4fb22-3532-48bd-99da-b48d710b1976"
+            },
+            "vertices": [
+              {
+                "x": 930,
+                "y": 420
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "External Payment Request [HTTPS]",
+              "description": "",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [],
+              "trustBoundaryIds": [
+                "f7ce7340-b9e8-456a-bb70-a61cd8bd461b"
+              ]
+            },
+            "labels": [
+              "External Payment Request [HTTPS]"
+            ],
+            "id": "a2082f77-8437-4271-9c11-3fc0a32b1e49",
+            "source": {
+              "cell": "7165b243-dee9-4d33-995e-ecf01d45092b",
+              "port": "638da2d3-5ea5-4fed-9ad7-ca6c0412b982"
+            },
+            "target": {
+              "cell": "52c4739e-53f5-4ce2-8148-e12820bb84c0",
+              "port": "bad1f11c-e985-43e8-ac73-03ca5d7c8b6f"
+            },
+            "vertices": [
+              {
+                "x": 1130,
+                "y": 290
+              },
+              {
+                "x": 1170,
+                "y": 190
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Payment Status Callback [Webhook]",
+              "description": "",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [],
+              "trustBoundaryIds": [
+                "f7ce7340-b9e8-456a-bb70-a61cd8bd461b"
+              ]
+            },
+            "labels": [
+              "Payment Status Callback [Webhook]"
+            ],
+            "id": "83d8a7e0-ee0f-4d86-a06c-eb5a443bb8ad",
+            "source": {
+              "cell": "52c4739e-53f5-4ce2-8148-e12820bb84c0",
+              "port": "38d4fb22-3532-48bd-99da-b48d710b1976"
+            },
+            "target": {
+              "cell": "7165b243-dee9-4d33-995e-ecf01d45092b",
+              "port": "bad1f11c-e985-43e8-ac73-03ca5d7c8b6f"
+            },
+            "vertices": [
+              {
+                "x": 1110,
+                "y": 180
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Session Login Token",
+              "description": "",
+              "outOfScope": false,
+              "isTrustBoundary": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [],
+              "trustBoundaryIds": [
+                "1268f4ae-f271-4aff-83ff-6de53b4992da"
+              ]
+            },
+            "labels": [
+              "Session Login Token"
+            ],
+            "id": "55de3a51-e80c-4709-8690-18790266684a",
+            "source": {
+              "cell": "0866f013-3e6d-456c-8545-c9f8ded374f4",
+              "port": "38d4fb22-3532-48bd-99da-b48d710b1976"
+            },
+            "target": {
+              "cell": "7955ac05-6e49-449e-84bc-54378e70a6bb",
+              "port": "638da2d3-5ea5-4fed-9ad7-ca6c0412b982"
+            },
+            "vertices": [
+              {
+                "x": 1200,
+                "y": 390
+              }
+            ]
           },
           {
             "position": {
@@ -1925,6 +2304,6 @@
     ],
     "diagramTop": 1,
     "reviewer": "Azi Syahrijal",
-    "threatTop": 2
+    "threatTop": 10
   }
 }
