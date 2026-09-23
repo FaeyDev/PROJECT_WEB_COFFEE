@@ -1,0 +1,47 @@
+{
+  "version": "2.6.2",
+  "release_version": "1.0.0",
+  "released_at": "2026-09-23",
+  "summary": {
+    "title": "Threat Model - Kopikoe Coffee Ordering System",
+    "owner": "FaeyDev",
+    "description": "Aplikasi web pemesanan kopi (Kopikoe) berbasis Node.js/Express dengan penyimpanan data JSON file (users.json, products.json, orders.json). Terdiri dari frontend (index, login, register, invoice) dan backend untuk customer & admin. Autentikasi berbasis session (express-session). Tidak ada API Gateway/database terpisah - single monolithic server.",
+    "id": 0
+  },
+  "detail": {
+    "contributors": [
+      {
+        "name": "Freeze AD Kaban"
+      },
+      {
+        "name": "Hammad Wildan Hidayat"
+      },
+      {
+        "name": "Azi Syahrijal"
+      }
+    ],
+    "diagrams": [
+      {
+        "id": 0,
+        "title": "New STRIDE diagram",
+        "diagramType": "STRIDE",
+        "placeholder": "New STRIDE diagram description",
+        "thumbnail": "./public/content/images/thumbnail.stride.jpg",
+        "version": "2.6.2",
+        "cells": []
+      },
+      {
+        "id": 1,
+        "title": "Main Flow",
+        "diagramType": "STRIDE",
+        "placeholder": "New STRIDE diagram description",
+        "thumbnail": "./public/content/images/thumbnail.stride.jpg",
+        "version": "2.6.2",
+        "cells": []
+      }
+    ],
+    "diagramTop": 2,
+    "reviewer": "April Rustianto",
+    "threatTop": 0
+  }
+}
